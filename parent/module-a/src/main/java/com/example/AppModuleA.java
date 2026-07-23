@@ -4,12 +4,10 @@ package com.example;
  * Hello world!
  *
  */
-public class App 
+public class AppModuleA 
 {
     public static void main( String[] args )
     {
-        
-        System.out.println("Environment:" + System.getProperty("env"));
         System.out.println( "Hello World!" );
     }
 }
