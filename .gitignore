@@ -1,5 +1,5 @@
 mavend
 parent
 my-app
-.vscode
+.vscode/
 target/
