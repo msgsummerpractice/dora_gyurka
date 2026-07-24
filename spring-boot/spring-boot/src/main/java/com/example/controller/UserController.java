@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/users")
 public class UserController {
 
-   // @Autowired
-   // private UserService userService;
+   @Autowired
+   private UserService userService;
     
     @GetMapping("/all")
     public List <User> getAllUsers() {
-        return List.of(new User("John Doe", "john.doe@example.com"), new User("Jane Doe", "jane.doe@example.com"));
+        log.info("Fetching all users");
+        return userService.getAllUsers();
     }
 }

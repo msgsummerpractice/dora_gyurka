@@ -19,20 +19,5 @@ public class UserService {
         return userRepository.getAllUsers();
     }
 
-    public void createUser(String name, String email) {
-        userRepository.createUser(name, email);
-    }
-
-    public User getUserByEmail(String email) {
-        return userRepository.getUserByEmail(email);
-    }
-
-    public void updateUser(String email, String name) {
-        userRepository.updateUser(email, name);
-    }
-
-    public void deleteUser(String email) {
-        userRepository.deleteUser(email);
-    }
 
 }
