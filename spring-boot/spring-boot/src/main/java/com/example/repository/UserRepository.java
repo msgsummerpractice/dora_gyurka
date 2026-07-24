@@ -14,17 +14,18 @@ public class UserRepository {
     private ConcurrentHashMap<String, User> userMap = new ConcurrentHashMap<>();
 
     public UserRepository() {
-         userMap.put("john@email.com", new User("John Doe", "john@email.com"));
+         userMap.put("john@email.com", new User("John Doe", "johnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn@email.com"));
          userMap.put("jane@email.com", new User("Jane Doe", "jane@email.com"));
     }
 
     public List<User> getAllUsers() {
-        log.info("hello from repo");
+       // log.info("hello from repo");
         return userMap.values().stream().toList();
     }
 
-    public User getUserByEmail(String email) {
-        return userMap.get(email);
+    public String getUserByEmail(String email) {
+        log.info("Fetching user by email: {}", email);
+        return userMap.get(email) != null ? userMap.get(email).getName() : "User not found";
     }
 
     public void updateUser(String email, String name) {

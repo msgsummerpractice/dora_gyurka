@@ -1,11 +1,24 @@
 package com.example.model;
 
 import org.springframework.stereotype.Component;
+import jakarta.validation.constraints.Min;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Component
 public class User {
     
+    @NotBlank
     private String name;
+
+    @Min(value=0)
+    int age;
+
+    @NotBlank
+    @NotEmpty
+    @Size(max=20)
     private String email;
 
     public User() {

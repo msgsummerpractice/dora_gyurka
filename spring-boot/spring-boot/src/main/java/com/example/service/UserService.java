@@ -19,5 +19,12 @@ public class UserService {
         return userRepository.getAllUsers();
     }
 
+    public String getUserByEmail(String email) {
+        return userRepository.getUserByEmail(email);
+    }
+
+    public boolean canApplyToInternship(int age){
+        return age >= 18;
+    }
 
 }
