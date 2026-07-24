@@ -1,10 +1,15 @@
 package com.example.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class User {
     
     private String name;
     private String email;
 
+    public User() {
+    }
     public User(String name, String email) {
         this.name = name;
         this.email = email;
