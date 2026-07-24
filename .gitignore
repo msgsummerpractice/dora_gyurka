@@ -1,4 +1,3 @@
 mavend
-.vscode
-target
-spring-boot
+.vscode/
+target/
