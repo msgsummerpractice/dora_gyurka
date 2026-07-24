@@ -1,4 +1,3 @@
-my-app
-parent
-spring-project
-.vscode
+mavend
+.vscode/
+target/
