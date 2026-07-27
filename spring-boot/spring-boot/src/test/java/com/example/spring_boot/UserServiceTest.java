@@ -1,27 +1,32 @@
 package com.example.spring_boot;
 
 
+import com.example.repository.UserRepository;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.Mock;
-import static org.mockito.Mockito.when;
+import org.mockito.junit.jupiter.MockitoExtension;
 import com.example.service.UserService;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
 
-    @Mock
+    @Mock 
+    private UserRepository userRepository;
     private UserService userService;
 
+    @BeforeEach
+    public void setUp() {
+        userService = new UserService(userRepository);
+    }
 
     @Test
-    void testGetAllUsers() {
-        when(userService.canApplyToInternship(10)).thenReturn(false);
-        when(userService.canApplyToInternship(20)).thenReturn(true);
+    void testUserCanApplyToInternship() {
 
-        assert !userService.canApplyToInternship(10);
-        assert userService.canApplyToInternship(20);
+        Assertions.assertFalse(userService.canApplyToInternship(10));
+        Assertions.assertTrue(userService.canApplyToInternship(20));
     }
     
 }

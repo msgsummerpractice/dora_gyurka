@@ -1,5 +1,5 @@
 package com.example.service;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import com.example.repository.UserRepository;
 import com.example.model.User;
@@ -8,7 +8,6 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Autowired
     private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
@@ -23,7 +22,7 @@ public class UserService {
         return userRepository.getUserByEmail(email);
     }
 
-    public boolean canApplyToInternship(int age){
+    public boolean canApplyToInternship(int age) {
         return age >= 18;
     }
 
