@@ -30,11 +30,19 @@ public class UserController {
     @Autowired
     private ConfigProperties configProperties;
 
+    @Value("${spring.profiles.active}")
+    private String profile;
+
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Value("${spring.application.name}")
     private String appName;
 
+    @GetMapping("/profile")
+    public ResponseEntity<String> getActiveProfile() {
+        logger.info("Fetching active profile");
+        return ResponseEntity.ok(profile);
+    }
     @GetMapping("/app-name")
     public ResponseEntity<String> getAppName() {
         return ResponseEntity.ok(appName);
