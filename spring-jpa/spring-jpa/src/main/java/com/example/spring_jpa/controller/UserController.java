@@ -1,14 +1,12 @@
-package com.example.rest.controller;
-import com.example.rest.service.UserService;
-import com.example.rest.model.User;
-import com.example.rest.exception.ResourceNotFoundException;
+package com.example.spring_jpa.controller;
+import com.example.spring_jpa.service.UserService;
+import com.example.spring_jpa.model.User;
+import com.example.spring_jpa.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import org.springframework.http.HttpStatus;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
