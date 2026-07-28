@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import static org.mockito.Mockito.when;
 
@@ -56,8 +58,9 @@ public class UserServiceTest {
 
     @Test
     public void testFindAllUsers() {
-      when(userRepository.findAll()).thenReturn(List.of(new User(1L,"JohnD","John", "Doe", "password", "john@email.com")));
-      List<User> users = userService.findAllUsers();
+      when(userRepository.findAll(PageRequest.of(0, 2))).thenReturn(new org.springframework.data.domain.PageImpl<>(List.of(new User(1L,"JohnD","John", "Doe", "password", "john@email.com"))));
+       Pageable pageable = PageRequest.of(0, 2);
+      List<User> users = userService.findAllUsers(pageable);
       Assertions.assertEquals(1, users.size());
     }
 
@@ -78,7 +81,7 @@ public class UserServiceTest {
 
     @Test 
     public void testDeleteUser() {
-        Long id = 1L;
+        Long id = 10L;
 
         userService.deleteUser(id);
 

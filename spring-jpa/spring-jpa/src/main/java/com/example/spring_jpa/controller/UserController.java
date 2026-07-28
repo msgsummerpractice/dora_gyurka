@@ -3,12 +3,20 @@ package com.example.spring_jpa.controller;
 import org.springframework.http.MediaType;
 import com.example.spring_jpa.dto.UpdateUserRequest;
 import com.example.spring_jpa.service.UserService;
+
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+
 import com.example.spring_jpa.model.User;
 import com.example.spring_jpa.dto.UserRequest;
 import com.example.spring_jpa.dto.UserResponse;
 import com.example.spring_jpa.exception.ResourceNotFoundException;
 import com.example.spring_jpa.mapper.UserMapper;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,8 +29,14 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "/api/users")
 @Validated
+@OpenAPIDefinition(
+    info = @io.swagger.v3.oas.annotations.info.Info(
+        title = "User API",
+        version = "1.0",
+        description = "API for managing users"
+    )
+)
 public class UserController {
-
 
     private final UserService userService;
 
@@ -33,9 +47,15 @@ public class UserController {
         this.userMapper = userMapper;
     }
 
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+    @Operation(summary = "Get all users", description = "Retrieve a list of all users")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Successfully retrieved list of users"),
+        @ApiResponse(code = 204, message = "No users found")
+    })
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.findAllUsers();
+        Pageable pageable = PageRequest.of(0, 2);
+        List<User> users = userService.findAllUsers(pageable);
 
         if (users.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -43,7 +63,12 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(users);
     }
 
-    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+    @Operation(summary = "Create user", description = "Create a new user")
+    @ApiResponses(value = {
+        @ApiResponse(code = 201, message = "Successfully created user"),
+        @ApiResponse(code = 400, message = "Invalid request body")
+    })
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest ) {
         UserResponse user1 = userMapper.toResponse(userService.createUser(userMapper.toEntity(userRequest)));
         if (user1 != null) {
@@ -54,7 +79,12 @@ public class UserController {
 
     }
 
-    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+    @Operation(summary = "Get a user", description = "Retrieve a user by ID")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Successfully retrieved user"),
+        @ApiResponse(code = 404, message = "User not found")
+    })
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
         User user = userService.getUserById(id).orElse(null);
         if (user == null ) {
@@ -66,7 +96,12 @@ public class UserController {
 
     }
 
-    @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+    @Operation(summary = "Update user", description = "Update an existing user by ID")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Successfully updated user"),
+        @ApiResponse(code = 404, message = "User not found")
+    })
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> updateUser(@PathVariable Long id, @Valid @RequestBody UserRequest user) {
         User userEntity = userMapper.toEntity(user);
         userEntity.setId(id);
@@ -79,7 +114,12 @@ public class UserController {
         }
     }
 
-    @DeleteMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+    @Operation(summary = "Delete user", description = "Delete an existing user by ID")
+    @ApiResponses(value = {
+        @ApiResponse(code = 204, message = "Successfully deleted user"),
+        @ApiResponse(code = 404, message = "User not found")
+    })
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         try {
             userService.deleteUser(id);
@@ -91,7 +131,12 @@ public class UserController {
 
     }
 
-    @PatchMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+    @Operation(summary = "Partially update user", description = "Partially update an existing user by ID")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Successfully updated user"),
+        @ApiResponse(code = 404, message = "User not found")
+    })
+    @PatchMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> partialUpdateUser(@PathVariable Long id, @Valid @RequestBody UpdateUserRequest user) {
         Optional<UserResponse> user1 = Optional.ofNullable(userMapper.toResponse(userService.getUserById(id).orElse(null)));
 

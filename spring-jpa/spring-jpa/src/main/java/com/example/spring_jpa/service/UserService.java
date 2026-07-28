@@ -2,7 +2,8 @@ package com.example.spring_jpa.service;
 
 import com.example.spring_jpa.repository.UserRepository;
 import com.example.spring_jpa.model.User;
-
+import com.example.spring_jpa.exception.ResourceNotFoundException;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +18,8 @@ public class UserService {
     }
 
 
-    public List<User> findAllUsers() {
-        return userRepository.findAll();
+    public List<User> findAllUsers(Pageable pageable) {
+        return userRepository.findAll(pageable).getContent();
     }
 
     public User createUser(User user) {
@@ -26,11 +27,23 @@ public class UserService {
     }
 
     public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
+        try{
+             return userRepository.findById(id);
+        } catch (Exception e) {
+            throw new ResourceNotFoundException("User not found with id: " + id);
+        }
     }
 
     public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+        try{
+            if (!userRepository.existsById(id)) {
+                throw new ResourceNotFoundException("User not found with id: " + id);
+            } else {
+                userRepository.deleteById(id);
+            }
+        } catch (Exception e) {
+            throw new ResourceNotFoundException("User not found with id: " + id);
+        }
     }
 
     public User getUserByEmail(String email) {
