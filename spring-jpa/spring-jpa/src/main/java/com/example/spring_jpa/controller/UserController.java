@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/api/users", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+@RequestMapping(path = "/api/users")
 @Validated
 public class UserController {
 
@@ -33,7 +33,7 @@ public class UserController {
         this.userMapper = userMapper;
     }
 
-    @GetMapping
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.findAllUsers();
 
@@ -43,7 +43,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(users);
     }
 
-    @PostMapping
+    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest ) {
         UserResponse user1 = userMapper.toResponse(userService.createUser(userMapper.toEntity(userRequest)));
         if (user1 != null) {
@@ -54,7 +54,7 @@ public class UserController {
 
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
         User user = userService.getUserById(id).orElse(null);
         if (user == null ) {
@@ -66,7 +66,7 @@ public class UserController {
 
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<UserResponse> updateUser(@PathVariable Long id, @Valid @RequestBody UserRequest user) {
         User userEntity = userMapper.toEntity(user);
         userEntity.setId(id);
@@ -79,7 +79,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         try {
             userService.deleteUser(id);
@@ -91,7 +91,7 @@ public class UserController {
 
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<UserResponse> partialUpdateUser(@PathVariable Long id, @Valid @RequestBody UpdateUserRequest user) {
         Optional<UserResponse> user1 = Optional.ofNullable(userMapper.toResponse(userService.getUserById(id).orElse(null)));
 
