@@ -1,3 +1,6 @@
+.vscode
 mavend
-.vscode/
+parent
 target/
+spring-core/
+spring-boot/
