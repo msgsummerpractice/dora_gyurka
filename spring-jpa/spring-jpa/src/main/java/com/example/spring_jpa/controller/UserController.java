@@ -4,8 +4,8 @@ import org.springframework.http.MediaType;
 import com.example.spring_jpa.dto.UpdateUserRequest;
 import com.example.spring_jpa.service.UserService;
 
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -43,8 +43,8 @@ public class UserController {
 
     @Operation(summary = "Get all users", description = "Retrieve a list of all users")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Successfully retrieved list of users"),
-        @ApiResponse(code = 204, message = "No users found")
+        @ApiResponse(responseCode = "200", description = "Successfully retrieved list of users"),
+        @ApiResponse(responseCode = "204", description = "No users found")
     })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<User>> getAllUsers() {
@@ -59,8 +59,8 @@ public class UserController {
 
     @Operation(summary = "Create user", description = "Create a new user")
     @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "Successfully created user"),
-        @ApiResponse(code = 400, message = "Invalid request body")
+        @ApiResponse(responseCode = "201", description = "Successfully created user"),
+        @ApiResponse(responseCode = "400", description = "Invalid request body")
     })
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest ) {
@@ -75,8 +75,8 @@ public class UserController {
 
     @Operation(summary = "Get a user", description = "Retrieve a user by ID")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Successfully retrieved user"),
-        @ApiResponse(code = 404, message = "User not found")
+        @ApiResponse(responseCode = "200", description = "Successfully retrieved user"),
+        @ApiResponse(responseCode = "404", description = "User not found")
     })
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
@@ -92,8 +92,8 @@ public class UserController {
 
     @Operation(summary = "Update user", description = "Update an existing user by ID")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Successfully updated user"),
-        @ApiResponse(code = 404, message = "User not found")
+        @ApiResponse(responseCode = "200", description = "Successfully updated user"),
+        @ApiResponse(responseCode = "404", description = "User not found")
     })
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> updateUser(@PathVariable Long id, @Valid @RequestBody UserRequest user) {
@@ -110,8 +110,8 @@ public class UserController {
 
     @Operation(summary = "Delete user", description = "Delete an existing user by ID")
     @ApiResponses(value = {
-        @ApiResponse(code = 204, message = "Successfully deleted user"),
-        @ApiResponse(code = 404, message = "User not found")
+        @ApiResponse(responseCode = "204", description = "Successfully deleted user"),
+        @ApiResponse(responseCode = "404", description = "User not found")
     })
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
@@ -127,8 +127,8 @@ public class UserController {
 
     @Operation(summary = "Partially update user", description = "Partially update an existing user by ID")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Successfully updated user"),
-        @ApiResponse(code = 404, message = "User not found")
+        @ApiResponse(responseCode = "200", description = "Successfully updated user"),
+        @ApiResponse(responseCode = "404", description = "User not found")
     })
     @PatchMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> partialUpdateUser(@PathVariable Long id, @Valid @RequestBody UpdateUserRequest user) {
