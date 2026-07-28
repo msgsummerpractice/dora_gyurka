@@ -1,3 +1,14 @@
 mavend/
 .vscode/
-target/
+parent/target/
+parent/module-a/target/
+parent/module-b/target/
+mavend/target/
+spring-boot/spring-boot/target
+spring-jpa/spring-jpa/target/classes
+spring-jpa/spring-jpa/target/test-classes
+spring-jpa/spring-jpa/target/maven-status
+spring-jpa/spring-jpa/target/maven--status
+spring-jpa/spring-jpa/target/generated-test-sources
+spring-jpa/target
+spring-project/target

@@ -3,7 +3,6 @@ package com.example.spring_jpa.service;
 import com.example.spring_jpa.repository.UserRepository;
 import com.example.spring_jpa.model.User;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -11,8 +10,7 @@ import java.util.Optional;
 @Service
 public class UserService {
     
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -22,6 +20,7 @@ public class UserService {
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
+
     public User createUser(User user) {
         return userRepository.save(user);
     }
@@ -35,7 +34,7 @@ public class UserService {
     }
 
     public User getUserByEmail(String email) {
-        return userRepository.getUserByEmail(email);
+        return userRepository.findByEmail(email);
     }
 
     public Optional<User> updateUser(User user) {
@@ -46,17 +45,16 @@ public class UserService {
             existingUser.setUsername(user.getUsername());
             existingUser.setPassword(user.getPassword());
             existingUser.setEmail(user.getEmail());
-            existingUser.setId(user.getId());
             return Optional.of(userRepository.save(existingUser));
         }
         return Optional.empty();
     }
 
     public List<User> findTop10Users() {
-         return userRepository.findFirst10ByOrderByUsernameAsc();
+         return userRepository.findFirst10ByOrderByUsernameIgnoreCaseAsc();
     }
 
-    public int countUsers() {
+    public Long countUsers() {
         return userRepository.countUsers();
     }
 
