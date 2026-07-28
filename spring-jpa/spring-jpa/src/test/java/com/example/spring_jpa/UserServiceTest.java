@@ -23,33 +23,29 @@ import com.example.spring_jpa.service.UserService;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
-    
+
     @Mock
     private UserRepository userRepository;
 
     private UserService userService;
 
+    public User user;
+
     @BeforeEach
     public void setUp() {
         userService = new UserService(userRepository);
 
-        User user = new User(null,"JohnD","John", "Doe", "password", "john@email.com");
-        userRepository.save(user);
+        user = new User(null, "JohnD", "John", "Doe", "password", "john@email.com");
+        userService.createUser(user);
     }
 
     @Test
     public void testCreateUser() {
-        User user = new User(1L,"JohnD","John", "Doe", "password", "john@email.com");
-        when(userRepository.save(user)).thenReturn(user);
-        
-        User savedUser = userService.createUser(user);
-
-        assertThat(userService.findAllUsers()).isNotNull();
+        verify(userRepository, times(1)).save(user);
     }
 
     @Test
     public void testGetUserById() {
-        User user = new User(1L,"JohnD","John", "Doe", "password", "john@email.com");
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
 
         Assertions.assertEquals(Optional.of(user), userService.getUserById(1L));
@@ -57,19 +53,20 @@ public class UserServiceTest {
 
     @Test
     public void testFindAllUsers() {
-      when(userRepository.findAll()).thenReturn(List.of(new User(1L,"JohnD","John", "Doe", "password", "john@email.com")));
-      List<User> users = userService.findAllUsers();
-      Assertions.assertEquals(1, users.size());
+        when(userRepository.findAll())
+                .thenReturn(List.of(new User(1L, "JohnD", "John", "Doe", "password", "john@email.com")));
+        List<User> users = userService.findAllUsers();
+        Assertions.assertEquals(1, users.size());
 
     }
 
     @Test
     void testUpdateUser() {
         User user = new User(1L, "JaneD", "Jane", "Doe", "password", "jane@email.com");
- 
+
         when(userRepository.findById(1L)).thenReturn(java.util.Optional.of(user));
         when(userRepository.save(user)).thenReturn(user);
- 
+
         Optional<User> result = userService.updateUser(user);
 
         assertEquals(Optional.of(user), result);
@@ -78,12 +75,12 @@ public class UserServiceTest {
         verify(userRepository).save(user);
     }
 
-    @Test 
+    @Test
     public void testDeleteUser() {
         Long id = 1L;
 
         userService.deleteUser(id);
 
         verify(userRepository, times(1)).deleteById(id);
-    } 
+    }
 }
