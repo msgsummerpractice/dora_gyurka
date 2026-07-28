@@ -15,10 +15,12 @@ import com.example.spring_jpa.dto.UserResponse;
 import com.example.spring_jpa.exception.ResourceNotFoundException;
 import com.example.spring_jpa.mapper.UserMapper;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
@@ -30,15 +32,16 @@ import java.util.Optional;
 @RequestMapping(path = "/api/users")
 @Validated
 @OpenAPIDefinition
+@PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
 public class UserController {
 
     private final UserService userService;
 
-    private final UserMapper userMapper;
+    @Autowired
+    private UserMapper userMapper;
 
-    public UserController(UserService userService, UserMapper userMapper) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.userMapper = userMapper;
     }
 
     @Operation(summary = "Get all users", description = "Retrieve a list of all users")
@@ -113,7 +116,8 @@ public class UserController {
         @ApiResponse(responseCode = "204", description = "Successfully deleted user"),
         @ApiResponse(responseCode = "404", description = "User not found")
     })
-    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         try {
             userService.deleteUser(id);
@@ -143,7 +147,7 @@ public class UserController {
             }
             return ResponseEntity.status(HttpStatus.OK).body(user1.get());
         }
-       
 
     }
+
 }
