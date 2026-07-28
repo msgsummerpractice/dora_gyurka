@@ -52,7 +52,7 @@ public class UserService {
 
     public Optional<User> updateUser(User user) {
         User existingUser = userRepository.findById(user.getId()).orElse(null);
-        if (existingUser != null) { 
+        if (existingUser != null) {
             existingUser.setFirstName(user.getFirstName());
             existingUser.setLastName(user.getLastName());
             existingUser.setUsername(user.getUsername());

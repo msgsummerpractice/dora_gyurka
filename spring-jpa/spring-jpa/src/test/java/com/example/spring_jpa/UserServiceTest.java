@@ -25,7 +25,7 @@ import com.example.spring_jpa.service.UserService;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
-    
+
     @Mock
     private UserMapper userMapper;
     
@@ -67,10 +67,10 @@ public class UserServiceTest {
     @Test
     void testUpdateUser() {
         User user = new User(1L, "JaneD", "Jane", "Doe", "password", "jane@email.com");
- 
+
         when(userRepository.findById(1L)).thenReturn(java.util.Optional.of(user));
         when(userRepository.save(user)).thenReturn(user);
- 
+
         Optional<User> result = userService.updateUser(user);
 
         assertEquals(Optional.of(user), result);
@@ -79,12 +79,12 @@ public class UserServiceTest {
         verify(userRepository).save(user);
     }
 
-    @Test 
+    @Test
     public void testDeleteUser() {
         Long id = 10L;
 
         userService.deleteUser(id);
 
         verify(userRepository, times(1)).deleteById(id);
-    } 
+    }
 }

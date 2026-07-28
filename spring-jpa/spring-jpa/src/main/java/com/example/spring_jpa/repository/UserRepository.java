@@ -15,6 +15,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u ORDER BY LOWER(u.username) ASC")
     List<User> findFirst10ByOrderByUsernameIgnoreCaseAsc();
 
+    @Query("SELECT u FROM User u ORDER BY LOWER(u.username) ASC")
+    List<User> findFirst10ByOrderByUsernameAsc();
 
     @Query("SELECT COUNT(u.id) FROM User u")
     Long countUsers();
