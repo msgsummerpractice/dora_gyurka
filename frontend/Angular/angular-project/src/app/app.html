@@ -1,9 +1,18 @@
-<div class="bg-white dark:bg-black text black dark:text-white">
-  <h1 class="text-lg font-bold text-indigo-400">Dog Gallery</h1>
-  <p>Welcome to the Dog Gallery!</p>
-</div>
+<mat-toolbar color="primary">
+  <span class="text-3xl font-bold text-indigo-800">Dog Gallery</span>
+  <mat-icon class="px-3">person</mat-icon>
 
-<div class="grid sm:grid-cols-1 lg:grid-cols-3 gap-4">
+  <span class="example-spacer"></span>
+
+  <a mat-button color="accent" href="https://www.google.com">Home</a>
+  <a mat-button color="accent">Other Dogs</a>
+  <a mat-button color="accent">Adopt</a>
+  <a mat-button color="accent">Forum</a>
+</mat-toolbar>
+<h1 class="text-lg font-bold text-indigo-400 px-8 py-4">Welcome to the Dog Gallery</h1>
+<p class="px-8">Have a great time while you're on our website!</p>
+
+<div class="grid sm:grid-cols-1 lg:grid-cols-3 gap-4 p-8">
   <div class="grid place-items-center gap-x-4 bg-slate-100">
     <img class="w-1/2 h-1/2" src="8e8a634fd04d52357ae9a2cbdbdb869d.jpg" alt="funny dog1" />
     <p class="text-black">This is a dog</p>
