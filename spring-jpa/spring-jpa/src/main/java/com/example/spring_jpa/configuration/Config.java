@@ -1,24 +1,41 @@
 package com.example.spring_jpa.configuration;
+
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.spring_jpa.controller.JwtAuthenticationFilter;
+import com.example.spring_jpa.providers.JWTAuthenticationEntryPoint;
+
+
 import org.springframework.context.annotation.Bean;
 
 @Configuration
 @EnableWebSecurity
 public class Config {
 
-    @Autowired
+    // @Autowired
+    // private UserDetailsService userDetailsService;
+
     private UserDetailsService userDetailsService;
+
+    private final JWTAuthenticationEntryPoint authenticationEntryPoint;
+
+    private final JwtAuthenticationFilter authenticationFilter;
+
+    public Config(UserDetailsService userDetailsService, JWTAuthenticationEntryPoint authenticationEntryPoint, JwtAuthenticationFilter authenticationFilter) {
+        this.userDetailsService = userDetailsService;
+        this.authenticationEntryPoint = authenticationEntryPoint;
+        this.authenticationFilter = authenticationFilter;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -27,25 +44,48 @@ public class Config {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-        .csrf(csrf -> csrf.disable())
+        // http
+        // .csrf(csrf -> csrf.disable())
+        //         .cors(cors -> cors.disable())
+        //         .authorizeHttpRequests(req -> req
+        //                 .requestMatchers(HttpMethod.DELETE, "/api/users/delete/{id}").hasRole("ADMIN")
+        //                 .anyRequest().authenticated()
+        //         )
+        //         .formLogin((form) -> form
+        //                 .loginPage("/login.html")
+        //                 .loginProcessingUrl("/api/users/login")
+        //                 .defaultSuccessUrl("/api/users")
+        //                 .permitAll()
+        //         ).httpBasic(Customizer.withDefaults());
+        // return http.build();
+
+        http.csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.disable())
-                .authorizeHttpRequests(req -> req
-                        .requestMatchers(HttpMethod.DELETE, "/api/users/delete/{id}").hasRole("ADMIN")
-                        .anyRequest().authenticated()
-                )
-                .formLogin((form) -> form
-                        .loginPage("/login.html")
-                        .loginProcessingUrl("/api/users/login")
-                        .defaultSuccessUrl("/api/users")
-                        .permitAll()
-                ).httpBasic(Customizer.withDefaults());
+                .authorizeHttpRequests((auth) -> {
+                        auth.requestMatchers("/api/auth/**").permitAll();
+                        auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
+                        auth.anyRequest().authenticated();
+                }).httpBasic(Customizer.withDefaults());
+        http.exceptionHandling(ex -> ex
+                        .authenticationEntryPoint(authenticationEntryPoint));
+
+        http.addFilterBefore(authenticationFilter, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
+    // @Bean
+    // public AuthenticationProvider authenticationProvider() {
+    //     DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
+    //     authProvider.setPasswordEncoder(passwordEncoder());
+    //     return authProvider;
+    // }
+
+    @Bean 
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+        return configuration.getAuthenticationManager();
+    }
+
     @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
+    public UserDetailsService userDetailsService() {
+        return userDetailsService;
     }
 }

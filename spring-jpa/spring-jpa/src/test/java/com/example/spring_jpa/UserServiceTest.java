@@ -40,7 +40,7 @@ public class UserServiceTest {
     public void setUp() {
         userService = new UserService(userRepository);
 
-        user = new User(null,"JohnD","John", "Doe", "password", "john@email.com",null);
+        user = new User(null,"JohnD","John", "Doe", "password", "john@email.com",null,null);
         userService.createUser(user);
     }
 
@@ -58,7 +58,7 @@ public class UserServiceTest {
 
     @Test
     public void testFindAllUsers() {
-      when(userRepository.findAll(PageRequest.of(0, 2))).thenReturn(new org.springframework.data.domain.PageImpl<>(List.of(new User(1L,"JohnD","John", "Doe", "password", "john@email.com", null))));
+      when(userRepository.findAll(PageRequest.of(0, 2))).thenReturn(new org.springframework.data.domain.PageImpl<>(List.of(new User(1L,"JohnD","John", "Doe", "password", "john@email.com", null,null))));
        Pageable pageable = PageRequest.of(0, 2);
       List<User> users = userService.findAllUsers(pageable);
       Assertions.assertEquals(1, users.size());
@@ -66,7 +66,7 @@ public class UserServiceTest {
 
     @Test
     void testUpdateUser() {
-        User user = new User(1L, "JaneD", "Jane", "Doe", "password", "jane@email.com", null);
+        User user = new User(1L, "JaneD", "Jane", "Doe", "password", "jane@email.com", null,null);
  
         when(userRepository.findById(1L)).thenReturn(java.util.Optional.of(user));
         when(userRepository.save(user)).thenReturn(user);
