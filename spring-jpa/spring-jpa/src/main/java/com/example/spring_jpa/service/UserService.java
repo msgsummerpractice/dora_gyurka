@@ -17,10 +17,10 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-
     public List<User> findAllUsers(Pageable pageable) {
         return userRepository.findAll(pageable).getContent();
     }
+
 
     public User createUser(User user) {
         return userRepository.save(user);
@@ -48,11 +48,12 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
+        return userRepository.findByEmail(email);
     }
 
     public Optional<User> updateUser(User user) {
         User existingUser = userRepository.findById(user.getId()).orElse(null);
-        if (existingUser != null) { 
+        if (existingUser != null) {
             existingUser.setFirstName(user.getFirstName());
             existingUser.setLastName(user.getLastName());
             existingUser.setUsername(user.getUsername());

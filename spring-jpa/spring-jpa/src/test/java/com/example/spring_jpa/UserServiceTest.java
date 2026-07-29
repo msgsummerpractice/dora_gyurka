@@ -36,6 +36,8 @@ public class UserServiceTest {
 
     public User user;
 
+    public User user;
+
     @BeforeEach
     public void setUp() {
         userService = new UserService(userRepository);
@@ -70,7 +72,7 @@ public class UserServiceTest {
  
         when(userRepository.findById(1L)).thenReturn(java.util.Optional.of(user));
         when(userRepository.save(user)).thenReturn(user);
- 
+
         Optional<User> result = userService.updateUser(user);
 
         assertEquals(Optional.of(user), result);
@@ -79,12 +81,12 @@ public class UserServiceTest {
         verify(userRepository).save(user);
     }
 
-    @Test 
+    @Test
     public void testDeleteUser() {
         Long id = 10L;
 
         userService.deleteUser(id);
 
         verify(userRepository, times(1)).deleteById(id);
-    } 
+    }
 }
