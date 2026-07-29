@@ -1,6 +1,7 @@
-.vscode
 mavend
 parent
-target/
-spring-core/
-spring-boot/
+spring-boot
+spring-jpa
+spring-project
+.vscode
+frontend/.vscode
