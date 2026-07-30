@@ -54,9 +54,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(users.stream().map(userMapper::toResponse).toList());
     }
 
-    @GetMapping(value = "/top10", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<UserResponse>> getTop10Users() {
-        List<User> users = userService.findTop10Users();
+    @GetMapping(value = "/top10/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<UserResponse>> getTop10Users(@PathVariable String username) {
+        List<User> users = userService.findTop10Users(username);
 
         if (users.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

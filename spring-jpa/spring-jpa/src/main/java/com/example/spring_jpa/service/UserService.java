@@ -64,8 +64,8 @@ public class UserService {
         return Optional.empty();
     }
 
-    public List<User> findTop10Users() {
-         return userRepository.findTop10UsersCaseInsensitive();
+    public List<User> findTop10Users(String username) {
+         return userRepository.findTop10ByUsernameContainingIgnoreCaseOrderByUsernameAsc(username);
     }
 
     public Long countUsers() {
