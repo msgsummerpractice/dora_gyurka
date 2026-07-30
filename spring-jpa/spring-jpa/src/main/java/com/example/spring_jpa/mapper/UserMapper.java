@@ -11,7 +11,9 @@ import com.example.spring_jpa.dto.UserResponse;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
     
+    @Mapping(target = "password", ignore = true)
     UserRequest toRequest(User user);
+    
     UserResponse toResponse(User user);
 
     @Mapping(target = "password", ignore = true)
@@ -19,7 +21,6 @@ public interface UserMapper {
     User toEntity(UserRequest userRequest);
 
     @Mapping(target = "password", ignore = true)
-    @Mapping(target = "id", ignore = true)
     User toEntity(UserResponse userResponse);
 
     @Mapping(target = "id", ignore = true)

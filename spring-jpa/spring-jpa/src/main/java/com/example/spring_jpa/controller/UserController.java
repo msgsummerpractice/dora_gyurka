@@ -4,8 +4,6 @@ import org.springframework.http.MediaType;
 import com.example.spring_jpa.dto.UpdateUserRequest;
 import com.example.spring_jpa.service.UserService;
 
-
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -15,8 +13,8 @@ import com.example.spring_jpa.dto.UserResponse;
 import com.example.spring_jpa.exception.ResourceNotFoundException;
 import com.example.spring_jpa.mapper.UserMapper;
 
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+// import org.springframework.data.domain.PageRequest;
+// import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -29,7 +27,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "/api/users")
 @Validated
-@OpenAPIDefinition
 public class UserController {
 
     private final UserService userService;
@@ -47,14 +44,24 @@ public class UserController {
         @ApiResponse(responseCode = "204", description = "No users found")
     })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<User>> getAllUsers() {
-        Pageable pageable = PageRequest.of(0, 2);
-        List<User> users = userService.findAllUsers(pageable);
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
+        //Pageable pageable = PageRequest.of(0, 2);
+        List<User> users = userService.findAllUsers(/*pagebale */);
 
         if (users.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
-        return ResponseEntity.status(HttpStatus.OK).body(users);
+        return ResponseEntity.status(HttpStatus.OK).body(users.stream().map(userMapper::toResponse).toList());
+    }
+
+    @GetMapping(value = "/top10", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<UserResponse>> getTop10Users() {
+        List<User> users = userService.findTop10Users();
+
+        if (users.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(users.stream().map(userMapper::toResponse).toList());
     }
 
     @Operation(summary = "Create user", description = "Create a new user")
@@ -80,13 +87,9 @@ public class UserController {
     })
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
-        User user = userService.getUserById(id).orElse(null);
-        if (user == null ) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        } else {
-            UserResponse response = userMapper.toResponse(user);
-            return ResponseEntity.status(HttpStatus.OK).body(response);
-        }
+        User user = userService.getUserById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+        UserResponse response = userMapper.toResponse(user);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }
 
@@ -119,7 +122,7 @@ public class UserController {
             userService.deleteUser(id);
 
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        } catch (ResourceNotFoundException e) {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
@@ -133,13 +136,15 @@ public class UserController {
     @PatchMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> partialUpdateUser(@PathVariable Long id, @Valid @RequestBody UpdateUserRequest user) {
         Optional<UserResponse> user1 = Optional.ofNullable(userMapper.toResponse(userService.getUserById(id).orElse(null)));
-
         if (!user1.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
             if(user.getUsername() != null){
                 user1.get().setUsername(user.getUsername());
+                System.out.println("username: " + user1.get().getUsername());
+                System.out.println("user entity: " + userMapper.toEntity(user1.get()));
+                userService.updateUser(userMapper.toEntity(user1.get()));
             }
             return ResponseEntity.status(HttpStatus.OK).body(user1.get());
         }
