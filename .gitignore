@@ -1,6 +1,11 @@
+spring-jpa/spring-jpa/target
+spring-project/target
 .vscode
 mavend
 parent
 target/
 spring-core/
 spring-boot/
+
+**/node_modules/
+**/.angular/
