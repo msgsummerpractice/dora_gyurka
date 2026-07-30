@@ -3,7 +3,6 @@ import { DogGalleryService } from '../service/dog-gallery';
 
 @Component({
   selector: 'dog-gallery',
-  standalone: true,
   templateUrl: './dog-gallery.html',
 })
 export class DogGalleryComponent implements OnInit {
