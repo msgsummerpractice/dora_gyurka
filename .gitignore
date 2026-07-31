@@ -1,5 +1,5 @@
-spring-jpa/spring-jpa/target
-spring-project/target
+spring-jpa/
+spring-project/
 .vscode
 mavend
 parent
