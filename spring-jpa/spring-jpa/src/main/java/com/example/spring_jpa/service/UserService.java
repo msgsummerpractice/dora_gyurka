@@ -3,7 +3,7 @@ package com.example.spring_jpa.service;
 import com.example.spring_jpa.repository.UserRepository;
 import com.example.spring_jpa.model.User;
 import com.example.spring_jpa.exception.ResourceNotFoundException;
-import org.springframework.data.domain.Pageable;
+//import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +17,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> findAllUsers(Pageable pageable) {
-        return userRepository.findAll(pageable).getContent();
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
     }
 
 
@@ -36,7 +36,7 @@ public class UserService {
 
     public void deleteUser(Long id) {
         try{
-            if (!userRepository.existsById(id)) {
+            if (userRepository.findById(id).isEmpty()) {
                 throw new ResourceNotFoundException("User not found with id: " + id);
             } else {
                 userRepository.deleteById(id);
@@ -51,6 +51,7 @@ public class UserService {
     }
 
     public Optional<User> updateUser(User user) {
+        System.out.println("Updating user with ID: " + user.getId());
         User existingUser = userRepository.findById(user.getId()).orElse(null);
         if (existingUser != null) {
             existingUser.setFirstName(user.getFirstName());
@@ -63,8 +64,8 @@ public class UserService {
         return Optional.empty();
     }
 
-    public List<User> findTop10Users() {
-         return userRepository.findFirst10ByOrderByUsernameIgnoreCaseAsc();
+    public List<User> findTop10Users(String username) {
+         return userRepository.findTop10ByUsernameContainingIgnoreCaseOrderByUsernameAsc(username);
     }
 
     public Long countUsers() {

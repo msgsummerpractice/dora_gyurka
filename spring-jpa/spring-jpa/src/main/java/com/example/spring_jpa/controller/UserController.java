@@ -4,11 +4,9 @@ import org.springframework.http.MediaType;
 import com.example.spring_jpa.dto.UpdateUserRequest;
 import com.example.spring_jpa.service.UserService;
 
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
-
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import com.example.spring_jpa.model.User;
 import com.example.spring_jpa.dto.UserRequest;
 import com.example.spring_jpa.dto.UserResponse;
@@ -16,11 +14,13 @@ import com.example.spring_jpa.exception.ResourceNotFoundException;
 import com.example.spring_jpa.mapper.UserMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+// import org.springframework.data.domain.PageRequest;
+// import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
@@ -31,16 +31,15 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "/api/users")
 @Validated
-@OpenAPIDefinition
 public class UserController {
 
     private final UserService userService;
 
-    @Autowired
-    private UserMapper userMapper;
+    private final UserMapper userMapper;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserMapper userMapper) {
         this.userService = userService;
+        this.userMapper = userMapper;
     }
 
     @Operation(summary = "Get all users", description = "Retrieve a list of all users")
