@@ -9,7 +9,7 @@ export class VisibilityDirective {
   private readonly _viewcontainer = inject(ViewContainerRef);
   private readonly _templateRef = inject(TemplateRef);
 
-  private checkVisibility = this.authService.isAuthenticated();
+  private checkVisibility = true; //this.authService.isAuthenticated();
 
   constructor() {
     effect(() => {
