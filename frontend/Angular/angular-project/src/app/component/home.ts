@@ -4,7 +4,7 @@ import { DogGalleryComponent } from './dog-gallery';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { VisibilityDirective } from '../visibility-directive';
+import { VisibilityDirective } from '../directive/visibility-directive';
 
 @Component({
   selector: 'home',

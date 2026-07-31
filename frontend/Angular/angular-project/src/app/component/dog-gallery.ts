@@ -6,11 +6,11 @@ import { DogGalleryService } from '../service/dog-gallery';
   templateUrl: './dog-gallery.html',
 })
 export class DogGalleryComponent implements OnInit {
-  private dogGalleryService = inject(DogGalleryService);
+  private readonly dogGalleryService = inject(DogGalleryService);
 
-  imageurl1 = signal('');
-  imageurl2 = signal('');
-  imageurl3 = signal('');
+  readonly imageurl1 = signal('');
+  readonly imageurl2 = signal('');
+  readonly imageurl3 = signal('');
 
   ngOnInit() {
     this.dogGalleryService.getDogImages().subscribe((response) => {
