@@ -4,6 +4,7 @@ import { DogGalleryService } from '../service/dog-gallery';
 @Component({
   selector: 'dog-gallery',
   templateUrl: './dog-gallery.html',
+  styleUrls: ['./dog-gallery.css'],
 })
 export class DogGalleryComponent implements OnInit {
   private dogGalleryService = inject(DogGalleryService);
