@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', loadChildren: () => import('./component/login').then((m) => m.LoginComponent) },
   { path: '**', component: NotFoundComponent },
 ];
 
