@@ -12,7 +12,7 @@ export const routes: Routes = [
     loadComponent: () => import('./component/adopt').then((m) => m.Adopt),
     canActivate: [authGuard],
   },
-  { path: 'login', loadComponent: () => import('./component/login').then((m) => m.LoginComponent) },
+  { path: 'login', loadComponent: () => import('./reactive-form/reactive-form').then((m) => m.ReactiveForm) },
   { path: '**', component: NotFoundComponent },
 ];
 

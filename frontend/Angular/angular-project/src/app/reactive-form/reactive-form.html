@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+  <span class="text-3xl font-bold text-indigo-600">Dog Gallery</span>
+
+  <span class="px-200"></span>
+  <a mat-button color="accent" href="https://www.google.com">Home</a>
+  <a mat-button color="accent" href="https://adapostulsperanta.ro/">Adopt</a>
+  <a mat-button [routerLink]="'/home'"><mat-icon class="pe-2">person_outline</mat-icon></a>
+</mat-toolbar>
+
+<body>
+  <h1 class="text-4xl font-bold text-indigo-600 px-215 py-20">Login</h1>
+
+  <form novalidate [formGroup]="userFormGroup" (ngSubmit)="onSubmitForm()" class="px-205 py-10">
+    <label for="email">Email:</label>
+    <input id="email" formControlName="email" type="text" />
+
+    @if (userFormGroup.controls.email.invalid && userFormGroup.controls.email.touched){
+    <small class="text-red-500">Email is invalid. Please check for mistakes</small>
+    }
+
+    <label for="password">Password:</label>
+    <input id="password" formControlName="password" type="password" />
+
+    @if (userFormGroup.controls.password.invalid && userFormGroup.controls.password.touched){
+    <small class="text-red-500">Password is invalid. Please check for mistakes</small>
+    }
+
+    <button type="submit" [disabled]="userFormGroup.invalid">Login</button>
+  </form>
+</body>

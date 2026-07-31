@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NotFoundComponent } from './not-found';
 import { DogGalleryComponent } from './dog-gallery';
 import { MatButtonModule } from '@angular/material/button';
