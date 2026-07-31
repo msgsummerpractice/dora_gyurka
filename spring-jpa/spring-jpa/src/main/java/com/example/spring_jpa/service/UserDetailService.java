@@ -6,14 +6,15 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.springframework.stereotype.Service;
+
+import org.springframework.stereotype.Component;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.example.spring_jpa.model.User;
 import com.example.spring_jpa.repository.UserRepository;
 
-@Service
+@Component
 public class UserDetailService implements UserDetailsService {
 
     @Autowired
@@ -26,11 +27,11 @@ public class UserDetailService implements UserDetailsService {
        Set<GrantedAuthority> authorities = uesr.getRoles().stream()
                 .map((role) -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toSet());
-       return org.springframework.security.core.userdetails.User.builder()
-                .username(uesr.getUsername())
-                .password(uesr.getPassword())
-                .authorities(authorities)
-                .build();
+       return new org.springframework.security.core.userdetails.User(
+                uesr.getUsername(),
+                uesr.getPassword(),
+                authorities
+       );
     }
 
     // public String createUser(String username, String password) {

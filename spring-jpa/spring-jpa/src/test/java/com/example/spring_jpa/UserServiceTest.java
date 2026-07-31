@@ -36,8 +36,6 @@ public class UserServiceTest {
 
     public User user;
 
-    public User user;
-
     @BeforeEach
     public void setUp() {
         userService = new UserService(userRepository);

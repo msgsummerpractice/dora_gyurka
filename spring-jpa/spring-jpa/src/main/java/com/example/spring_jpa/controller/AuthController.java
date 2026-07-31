@@ -22,6 +22,7 @@ public class AuthController {
     public ResponseEntity<SignInResponse> authenticateUser(@RequestBody SignInRequest signInRequest) {
         
         String token = authService.login(signInRequest);
+        System.out.println("Token: " + token);
         SignInResponse response = new SignInResponse();
         response.setAccessToken(token);
         return new ResponseEntity<>(response, HttpStatus.OK);

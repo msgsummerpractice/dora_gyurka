@@ -4,6 +4,7 @@ import org.springframework.security.core.Authentication;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+
 import java.security.Key;
 import java.security.SecureRandom;
 import java.util.Date;
@@ -15,19 +16,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class JWTokenProvider {
     
-    private String jwtSecret = "c3VwZXJzZWNyZXRzdXBlcnNlY3JldHN1cGVyc2VjcmV0c3VwZXJzZWNyZXQ=";
+    private String jwtSecret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE1MTYyNDI2MjJ9.9xV1EGR88dPbSJa2sek9in1jgnXBccNO1eEHC-gCygk";
     private long jwtExpirationDate = 3600000; //1h = 3600s and 3600*1000 = 3600000 milliseconds
 
     public String generateToken(Authentication authentication) {
+        System.out.println("Authentication: " + authentication);
         String username = authentication.getName();
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpirationDate);
 
         String token =  Jwts.builder()
                 .subject(username)
-                .issuedAt(now)
+                .issuedAt(new Date())
                 .expiration(expiryDate)
-                .signWith((SecretKey) key())
+                .signWith(key())
                 .compact();
 
         return token;
@@ -55,6 +57,7 @@ public class JWTokenProvider {
     }
 
     public String getUsernameFromToken(String token) {
+        System.out.println("Token: " + token);
         return Jwts.parser()
                 .verifyWith((SecretKey)key())
                 .build()

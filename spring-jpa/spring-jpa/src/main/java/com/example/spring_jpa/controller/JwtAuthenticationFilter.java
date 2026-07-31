@@ -21,11 +21,9 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private JWTokenProvider jwtTokenProvider;
+    private final JWTokenProvider jwtTokenProvider;
+    private final UserDetailService userDetailService;
 
-    private UserDetailService userDetailService;
-    
     public JwtAuthenticationFilter(JWTokenProvider jwtTokenProvider, UserDetailService userDetailService) {
         this.jwtTokenProvider = jwtTokenProvider;
         this.userDetailService = userDetailService;
@@ -58,7 +56,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String bearerToken = request.getHeader("Authorization");
 
         if(StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")){
-            return bearerToken.substring(7, bearerToken.length());
+            return bearerToken.substring(7);
         }
 
         return null;
