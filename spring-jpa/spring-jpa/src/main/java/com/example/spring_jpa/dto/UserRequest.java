@@ -23,7 +23,8 @@ public class UserRequest {
     private String username;
 
     @Email(message = "Email should be valid")
-    @Size(max = 20, message = "Email must be at most 20 characters long")
+    @NotBlank(message = "Email required")
+    @Size(max = 30, message = "Email must be at most 30 characters long")
     private String email;
 
     @NotBlank(message = "Password required")
