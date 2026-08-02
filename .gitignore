@@ -2,3 +2,5 @@
 mavend
 parent
 target/
+**/node_modules/
+**/.angular/
