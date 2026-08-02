@@ -1,0 +1,29 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+#email,
+#password {
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+label {
+  font-style: italic;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+button {
+  text-align: center;
+}
+
+form {
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}

@@ -1,4 +1,4 @@
-import { Component, inject, Injectable, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { DogGalleryService } from '../service/dog-gallery';
 
 @Component({

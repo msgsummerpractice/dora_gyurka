@@ -1,16 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { NotFoundComponent } from '../component/not-found';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { VisibilityDirective } from '../visibility-directive';
 import { RouterLink } from '@angular/router';
-import {
-  ReactiveFormsModule,
-  NonNullableFormBuilder,
-  FormControl,
-  Validators,
-} from '@angular/forms';
+import {ReactiveFormsModule,NonNullableFormBuilder,FormControl,Validators} from '@angular/forms';
 
 type UserForm = {
   email: FormControl<string>;
@@ -18,20 +11,12 @@ type UserForm = {
 };
 
 @Component({
-  selector: 'app-reactive-form',
-  imports: [
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    RouterLink,
-    VisibilityDirective,
-    NotFoundComponent,
-  ],
-  templateUrl: './reactive-form.html',
-  styleUrl: './reactive-form.css',
+  selector: 'app-login-form',
+  imports: [ReactiveFormsModule,MatButtonModule,MatIconModule, MatToolbarModule,RouterLink],
+  templateUrl: './login-form.html',
+  styleUrl: './login-form.css',
 })
-export class ReactiveForm {
+export class LoginForm {
   private readonly form = inject(NonNullableFormBuilder);
 
   protected readonly userFormGroup = this.form.group<UserForm>({

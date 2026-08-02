@@ -1,10 +1,12 @@
 <mat-toolbar color="primary">
-  <span class="text-3xl font-bold text-indigo-800">Dog Gallery</span>
+  <span class="justitext-3xl font-bold text-indigo-800">Dog Gallery</span>
 
-  <span class="px-190"></span>
-  <a mat-button [routerLink]="'/home'"><mat-icon class="pe-2">person_outline</mat-icon></a>
+  <span class="spacer"></span>
+  <a mat-button [routerLink]="'/home'"
+    ><mat-icon class="pe-2 justify-end">person_outline</mat-icon></a
+  >
 </mat-toolbar>
 
 <h1 class="text-lg font-bold text-indigo-400 px-8 py-4">Adopt a Dog</h1>
-<h3>Have a look at the dogs that are looking for their forever homes</h3>
+<h3 class="text-md px-8 py-4">Have a look at the dogs that are looking for their forever homes</h3>
 <dog-gallery></dog-gallery>

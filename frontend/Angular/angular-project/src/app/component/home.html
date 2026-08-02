@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <span class="text-3xl font-bold font-serif text-indigo-100">Dog Gallery</span>
 
-  <span class="px-180"></span>
+  <span class="spacer"></span>
 
   <a mat-button class="text-white" href="https://www.google.com">Home</a>
   <a mat-button class="text-white font-serif" routerLink="/adopt">Adopt</a>
@@ -9,9 +9,11 @@
   <a mat-button routerLink="/home"><mat-icon class="pe-1">person_outline</mat-icon></a>
 </mat-toolbar>
 
-<h1 class="text-lg font-bold font-serif text-indigo-400 px-8 py-4">Welcome to the Dog Gallery</h1>
+<h1 class="text-lg font-bold font-serif text-indigo-400 px-8 py-4 mb-10"
+  >Welcome to the Dog Gallery</h1
+>
 <p class="px-8 font-serif text-lg">Have a great time while you're on our website!</p>
 
-<section *checkVisibility="true">
+<div *checkVisibility="true">
   <dog-gallery></dog-gallery>
-</section>
+</div>

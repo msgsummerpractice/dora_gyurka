@@ -1,5 +1,5 @@
 import { Directive, effect, inject, input, TemplateRef, ViewContainerRef } from '@angular/core';
-import { AuthService } from './service/auth-service';
+import { AuthService } from '../service/auth-service';
 
 @Directive({
   selector: '[checkVisibility]',
@@ -9,11 +9,11 @@ export class VisibilityDirective {
   private readonly _viewcontainer = inject(ViewContainerRef);
   private readonly _templateRef = inject(TemplateRef);
 
-  private checkVisibility = true; //this.authService.isAuthenticated();
+  public checkVisibility = input.required<boolean>(); //this.authService.isAuthenticated();
 
   constructor() {
     effect(() => {
-      if (this.checkVisibility) {
+      if (this.checkVisibility()) {
         this._viewcontainer.createEmbeddedView(this._templateRef);
       } else {
         this._viewcontainer.clear();
