@@ -48,7 +48,7 @@ public class UserController {
         @ApiResponse(responseCode = "200", description = "Successfully retrieved list of users"),
         @ApiResponse(responseCode = "204", description = "No users found")
     })
-    @PreAuthorize("hasAuthority'('USER') or hasAuthority'('ADMIN')")
+    @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<User>> getAllUsers() {
         Pageable pageable = PageRequest.of(0, 2);
@@ -65,7 +65,7 @@ public class UserController {
         @ApiResponse(responseCode = "201", description = "Successfully created user"),
         @ApiResponse(responseCode = "400", description = "Invalid request body")
     })
-    @PreAuthorize("hasAuthority'('USER') or hasAuthority'('ADMIN')")
+    @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest ) {
         UserResponse user1 = userMapper.toResponse(userService.createUser(userMapper.toEntity(userRequest)));
@@ -82,7 +82,7 @@ public class UserController {
         @ApiResponse(responseCode = "200", description = "Successfully retrieved user"),
         @ApiResponse(responseCode = "404", description = "User not found")
     })
-    @PreAuthorize("hasAuthority'('USER') or hasAuthority'('ADMIN')")
+    @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
         User user = userService.getUserById(id).orElse(null);
@@ -100,7 +100,7 @@ public class UserController {
         @ApiResponse(responseCode = "200", description = "Successfully updated user"),
         @ApiResponse(responseCode = "404", description = "User not found")
     })
-    @PreAuthorize("hasAuthority'('USER') or hasAuthority'('ADMIN')")
+    @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> updateUser(@PathVariable Long id, @Valid @RequestBody UserRequest user) {
         User userEntity = userMapper.toEntity(user);
@@ -119,7 +119,7 @@ public class UserController {
         @ApiResponse(responseCode = "204", description = "Successfully deleted user"),
         @ApiResponse(responseCode = "404", description = "User not found")
     })
-    @PreAuthorize("hasAuthority'('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         try {
@@ -137,7 +137,7 @@ public class UserController {
         @ApiResponse(responseCode = "200", description = "Successfully updated user"),
         @ApiResponse(responseCode = "404", description = "User not found")
     })
-    @PreAuthorize("hasAuthority'('USER') or hasAuthority'('ADMIN')")
+    @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
     @PatchMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> partialUpdateUser(@PathVariable Long id, @Valid @RequestBody UpdateUserRequest user) {
         Optional<UserResponse> user1 = Optional.ofNullable(userMapper.toResponse(userService.getUserById(id).orElse(null)));
@@ -148,6 +148,7 @@ public class UserController {
         else {
             if(user.getUsername() != null){
                 user1.get().setUsername(user.getUsername());
+                userService.updateUser(userMapper.toEntity(user1.get()));
             }
             return ResponseEntity.status(HttpStatus.OK).body(user1.get());
         }

@@ -2,8 +2,12 @@ package com.example.spring_jpa.service;
 
 import com.example.spring_jpa.repository.UserRepository;
 import com.example.spring_jpa.model.User;
+import com.example.spring_jpa.configuration.Config;
 import com.example.spring_jpa.exception.ResourceNotFoundException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +15,8 @@ import java.util.Optional;
 @Service
 public class UserService {
     
+    @Autowired
+    private Config config;
     private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
@@ -23,6 +29,7 @@ public class UserService {
 
 
     public User createUser(User user) {
+        user.setPassword(config.passwordEncoder().encode(user.getPassword()));
         return userRepository.save(user);
     }
 

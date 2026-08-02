@@ -7,11 +7,13 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.authorization.EnableMultiFactorAuthentication;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.authority.FactorGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -21,6 +23,7 @@ import com.example.spring_jpa.providers.JWTAuthenticationEntryPoint;
 
 import org.springframework.context.annotation.Bean;
 
+@EnableMultiFactorAuthentication(authorities = {FactorGrantedAuthority.PASSWORD_AUTHORITY, FactorGrantedAuthority.OTT_AUTHORITY})
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -64,12 +67,14 @@ public class Config {
         // return http.build();
 
         http.csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.disable())
+                .sessionManagement(session -> 
+                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
                 .authorizeHttpRequests((auth) -> {
                         auth.requestMatchers("/api/auth/**").permitAll();
-                        auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                         auth.anyRequest().authenticated();
-                }).httpBasic(Customizer.withDefaults());
+                })
+                .httpBasic(Customizer.withDefaults());
         http.exceptionHandling(ex -> ex
                         .authenticationEntryPoint(authenticationEntryPoint));
 

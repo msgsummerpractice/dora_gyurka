@@ -1,6 +1,9 @@
 package com.example.spring_jpa.providers;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -16,11 +19,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class JWTokenProvider {
     
-    private String jwtSecret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE1MTYyNDI2MjJ9.9xV1EGR88dPbSJa2sek9in1jgnXBccNO1eEHC-gCygk";
+    @Value("${spring.jwt.secret}")
+    private String jwtSecret;
     private long jwtExpirationDate = 3600000; //1h = 3600s and 3600*1000 = 3600000 milliseconds
 
     public String generateToken(Authentication authentication) {
-        System.out.println("Authentication: " + authentication);
         String username = authentication.getName();
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpirationDate);
@@ -57,7 +60,6 @@ public class JWTokenProvider {
     }
 
     public String getUsernameFromToken(String token) {
-        System.out.println("Token: " + token);
         return Jwts.parser()
                 .verifyWith((SecretKey)key())
                 .build()
@@ -67,12 +69,16 @@ public class JWTokenProvider {
     }
 
      public boolean validateToken(String token){
-        System.out.println("Token: " + token);
-        Jwts.parser()
+        
+        try{
+            Jwts.parser()
                 .verifyWith((SecretKey) key())
                 .build()
                 .parse(token);
-        return true;
+             return true;
+        } catch(Exception e){
+            throw new JwtException("Invalid JWT token: " + e.getMessage());
+        }
 
     }
 }
