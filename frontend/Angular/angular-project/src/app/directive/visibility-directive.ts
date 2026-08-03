@@ -9,11 +9,11 @@ export class VisibilityDirective {
   private readonly _viewcontainer = inject(ViewContainerRef);
   private readonly _templateRef = inject(TemplateRef);
 
-  private checkVisibility = this.authService.isAuthenticated();
+  public checkVisibility = input.required<boolean>(); //this.authService.isAuthenticated();
 
   constructor() {
     effect(() => {
-      if (this.checkVisibility) {
+      if (this.checkVisibility()) {
         this._viewcontainer.createEmbeddedView(this._templateRef);
       } else {
         this._viewcontainer.clear();

@@ -1,9 +1,10 @@
-import { Component, inject, Injectable, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { DogGalleryService } from '../service/dog-gallery';
 
 @Component({
   selector: 'dog-gallery',
   templateUrl: './dog-gallery.html',
+  styleUrls: ['./dog-gallery.css'],
 })
 export class DogGalleryComponent implements OnInit {
   private readonly dogGalleryService = inject(DogGalleryService);
