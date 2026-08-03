@@ -4,8 +4,5 @@ spring-project/
 mavend
 parent
 target/
-spring-core/
-spring-boot/
-
 **/node_modules/
 **/.angular/
