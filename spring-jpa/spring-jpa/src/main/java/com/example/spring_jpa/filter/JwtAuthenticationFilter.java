@@ -1,4 +1,4 @@
-package com.example.spring_jpa.controller;
+package com.example.spring_jpa.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

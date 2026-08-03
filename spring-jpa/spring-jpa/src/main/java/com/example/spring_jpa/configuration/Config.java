@@ -17,7 +17,7 @@ import org.springframework.security.core.authority.FactorGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.example.spring_jpa.controller.JwtAuthenticationFilter;
+import com.example.spring_jpa.filter.JwtAuthenticationFilter;
 import com.example.spring_jpa.providers.JWTAuthenticationEntryPoint;
 
 
@@ -67,6 +67,7 @@ public class Config {
         // return http.build();
 
         http.csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.disable())
                 .sessionManagement(session -> 
                      session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )

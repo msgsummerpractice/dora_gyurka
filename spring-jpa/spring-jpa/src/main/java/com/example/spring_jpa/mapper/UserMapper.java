@@ -11,6 +11,7 @@ import com.example.spring_jpa.dto.UserResponse;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
     
+    
     @Mapping(target = "password", ignore = true)
     UserRequest toRequest(User user);
     
