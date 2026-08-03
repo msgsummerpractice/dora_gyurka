@@ -1,6 +1,8 @@
 package com.example.spring_jpa.service;
 import java.security.SecureRandom;
 import com.example.spring_jpa.model.Token;
+
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,6 +13,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.example.spring_jpa.dto.SignInRequest;
 import com.example.spring_jpa.providers.JWTokenProvider;
 import com.example.spring_jpa.repository.TokenRepository;
+
+import org.slf4j.Logger;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -39,7 +44,9 @@ public class AuthServiceImpl implements AuthService {
         //String token = jwtTokenProvider.generateToken(authentication);
         int otp = 100000 + secureRandom.nextInt(900000); 
         tokenRepository.save(new Token(null, signInRequest.getUsername(), String.valueOf(otp), java.time.LocalDateTime.now().plusMinutes(5),false,null));
-        return "OTP sent to user: " + otp;
+        Logger logger = LoggerFactory.getLogger(AuthServiceImpl.class);
+        logger.info("OTP sent to user: " + otp);
+        return "OTP sent to user";
     }
 
     @Override
