@@ -25,10 +25,10 @@ jobs:
         with:
           node-version: 24.15.0
           cache: npm
-          cache-dependency-path: frontend/training-app/package-lock.json
+          cache-dependency-path: frontend/Angular/angular-project/package-lock.json
  
       - name: Install dependencies
-        working-directory: frontend/training-app
+        working-directory: frontend/Angular/angular-project
         run: npm ci
       - name: Build And Deploy
         id: builddeploy
