@@ -16,7 +16,7 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./reactive-login-form/login-form').then((m) => m.LoginForm),
   },
-  { path: '**', component: NotFoundComponent },
+  { path: '**', component: HomeComponent },
 ];
 
 @NgModule({
