@@ -3,4 +3,12 @@
     "rewrite": "/index.html",
     "exclude": ["/images/*", "/css/*", "/js/*"]
   }
+,
+  "routes": [
+    {
+      "route": "/**",
+      "rewrite": "/home.html",
+      "statusCode": 404
+    }
+  ]
 }
