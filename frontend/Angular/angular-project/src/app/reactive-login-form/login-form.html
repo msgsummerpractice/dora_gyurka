@@ -48,8 +48,14 @@
     >
     } @if(showOtp){
     <label for="otp" class="mb-1 mt-5 text-lg font-bold text-indigo-800">OTP:</label>
-    <input formControlName="otp" placeholder="Enter OTP" />
-    <button type="button" (click)="verify()">Verify OTP</button>
+    <input
+      id="otp"
+      formControlName="otp"
+      type="text"
+      class="px-10 rounded-4xl m-2 w-100 h-10"
+      placeholder="Enter OTP"
+    />
+    <button type="button" (click)="verify()" class="text-white text-white font-bold py-4 px-8 rounded-full bg-indigo-800 mt-10">Verify OTP</button>
     }
   </form>
 </body>

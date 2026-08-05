@@ -51,20 +51,13 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
 public String verifyOtp(String username, String otp) {
-
-    System.out.println("Checking OTP for: " + username);
-    System.out.println("Received OTP: " + otp);
-
-    Token token = tokenRepository.findByUsernameAndUsedFalse(username)
-            .orElse(null);
+    Token token = tokenRepository.findTopByUsernameAndUsedFalseOrderByIdDesc(username)
+            .orElseThrow(() -> new RuntimeException("No OTP found for user: " + username));
 
     if (token == null) {
         System.out.println("No OTP found");
         return null;
     }
-
-    System.out.println("Stored OTP: " + token.getToken());
-    System.out.println("Expires: " + token.getExpiresAt());
 
     if (token.getExpiresAt().isBefore(java.time.LocalDateTime.now())) {
         System.out.println("OTP expired");
