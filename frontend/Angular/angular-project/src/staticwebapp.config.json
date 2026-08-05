@@ -1,14 +1,6 @@
 {
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/images/*", "/css/*", "/js/*"]
+    "exclude": ["/assets/*", "/images/*", "/css/*", "/js/*", "/*.jpg", "/*.png", "/*.svg", "/*.ico"]
   }
-,
-  "routes": [
-    {
-      "route": "/**",
-      "rewrite": "/home.html",
-      "statusCode": 404
-    }
-  ]
 }
