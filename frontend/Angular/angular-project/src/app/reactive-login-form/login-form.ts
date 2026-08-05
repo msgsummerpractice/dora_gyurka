@@ -26,7 +26,7 @@ type UserForm = {
 export class LoginForm {
   private readonly form = inject(NonNullableFormBuilder);
   private readonly authService = inject(AuthService);
-  protected showOtp = false;
+  showOtp = false;
 
   protected readonly userFormGroup = this.form.group<UserForm>({
     username: this.form.control('', Validators.required),
@@ -48,6 +48,8 @@ export class LoginForm {
   verify(): void {
     const { username, otp } = this.userFormGroup.getRawValue();
 
+    console.log('Verifying OTP for username:', username, 'with OTP:', otp);
+
     this.authService.verifyOtp(username, otp).subscribe({
       next: (response) => {
         this.authService.setToken(response.accessToken);
@@ -60,21 +62,21 @@ export class LoginForm {
   }
 
   onSubmitForm(): void {
-    if (!this.userFormGroup.valid) {
+    if (this.userFormGroup.invalid) {
       return;
-    } else {
-      const { username, password } = this.userFormGroup.getRawValue();
-      this.authService.login(username, password).subscribe({
-        next: (response) => {
-          this.showOtp = true;
-          console.log('Login successful. Proceed to OTP verification.');
-          this.authService.setUsername(username);
-          console.log('Login successful. Proceed to OTP verification.');
-        },
-        error: (error) => {
-          console.error('Login failed:', error);
-        },
-      });
     }
+    const { username, password } = this.userFormGroup.getRawValue();
+    console.log('Form submitted with username:', username, 'and password:', password);
+    this.authService.login(username, password).subscribe({
+      next: (response) => {
+        this.showOtp = true;
+        console.log('Login successful. Proceed to OTP verification.');
+        this.authService.setUsername(username);
+        console.log('Login successful. Proceed to OTP verification.');
+      },
+      error: (error) => {
+        console.error('Login failed:', error);
+      },
+    });
   }
 }

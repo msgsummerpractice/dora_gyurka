@@ -22,7 +22,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<SignInResponse> authenticateUser(@RequestBody SignInRequest signInRequest) {
-        
+        System.out.println("LOGIN CONTROLLER CALLED");
         String token = authService.login(signInRequest);
         SignInResponse response = new SignInResponse();
         response.setAccessToken(token);
@@ -31,7 +31,10 @@ public class AuthController {
 
     @PostMapping("/verify-otp")
     public ResponseEntity<SignInResponse> verifyOtp(@RequestBody OtpResponse otpResponse) {
+        System.out.println("Username: " + otpResponse.getUsername());
+    System.out.println("OTP: " + otpResponse.getOtp()); 
         String jwtToken = authService.verifyOtp(otpResponse.getUsername(), otpResponse.getOtp());
+         System.out.println("JWT result: " + jwtToken);
         if (jwtToken != null) {
             SignInResponse response = new SignInResponse();
             response.setAccessToken(jwtToken);

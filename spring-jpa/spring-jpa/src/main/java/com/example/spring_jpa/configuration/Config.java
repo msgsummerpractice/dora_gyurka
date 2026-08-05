@@ -74,8 +74,7 @@ public class Config {
                      session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authorizeHttpRequests((auth) -> {
-                        auth.requestMatchers("/api/auth/login/**").permitAll();
-                        auth.requestMatchers("/api/auth/verify-otp/**").permitAll();
+                        auth.requestMatchers("/api/auth/**").permitAll();
                         auth.anyRequest().authenticated();
                 });
         http.exceptionHandling(ex -> ex

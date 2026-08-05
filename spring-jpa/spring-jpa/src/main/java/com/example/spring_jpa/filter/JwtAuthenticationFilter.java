@@ -26,14 +26,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     public JwtAuthenticationFilter(JWTokenProvider jwtTokenProvider, UserDetailService userDetailService) {
         this.jwtTokenProvider = jwtTokenProvider;
         this.userDetailService = userDetailService;
+        
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        
-                String token = getTokenFromRequest(request);
+                
+                String authHeader = request.getHeader("Authorization");
+                System.out.println("Authorization = " + authHeader);
 
+                String token = getTokenFromRequest(request);
+                System.out.println("Token = " + token);
                 if(StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)) {
                     String username = jwtTokenProvider.getUsernameFromToken(token);
                     var userDetails = userDetailService.loadUserByUsername(username);
