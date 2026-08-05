@@ -10,41 +10,29 @@
 <body>
   <h1 class="text-4xl font-bold text-indigo-800 text-center mt-20">Login</h1>
 
-  <form
-    novalidate
-    [formGroup]="userFormGroup"
-    (ngSubmit)="onSubmitForm()"
-    class="align-content-center flex flex-col items-center"
-  >
-    <label for="email" class="mb-1 mt-5 text-lg font-bold text-indigo-800">Email:</label>
-    <input
-      id="email"
-      formControlName="email"
-      type="text"
-      class="px-10 rounded-4xl m-2 w-100 h-10"
-    />
+  <form novalidate [formGroup]="userFormGroup" (ngSubmit)="onSubmitForm()" class="align-content-center flex flex-col items-center">
+   
+    @if(!showOtp){
+      <label for="username" class="mb-1 mt-5 text-lg font-bold text-indigo-800">username:</label>
+      <input id="username" formControlName="username" type="text" class="px-10 rounded-4xl m-2 w-100 h-10"/>
 
-    @if (userFormGroup.controls.email.invalid && userFormGroup.controls.email.touched){
-    <small class="text-red-500">Email is invalid. Please check for mistakes</small>
+      @if (userFormGroup.controls.username.invalid && userFormGroup.controls.username.touched){
+      <small class="text-red-500">username is invalid. Please check for mistakes</small>
+      }
+
+      <label for="password" class="mb-1 mt-5 text-lg font-bold text-indigo-800">Password:</label>
+      <input id="password" formControlName="password" type="password" class="px-10 rounded-4xl m-2 w-100 h-10"/>
+
+      @if (userFormGroup.controls.password.invalid && userFormGroup.controls.password.touched){
+      <small class="text-red-500">Password is invalid. Please check for mistakes</small>
+      }
+      <button type="submit" [disabled]="userFormGroup.invalid" class="text-white text-white font-bold py-4 px-8 rounded-full bg-indigo-800 mt-10">Login</button>
+    } 
+    
+    @if(showOtp){
+      <label for="otp" class="mb-1 mt-5 text-lg font-bold text-indigo-800">OTP:</label>
+      <input formControlName="otp" placeholder="Enter OTP" />
+      <button (click)="verify()">Verify OTP</button>
     }
-
-    <label for="password" class="mb-1 mt-5 text-lg font-bold text-indigo-800">Password:</label>
-    <input
-      id="password"
-      formControlName="password"
-      type="password"
-      class="px-10 rounded-4xl m-2 w-100 h-10"
-    />
-
-    @if (userFormGroup.controls.password.invalid && userFormGroup.controls.password.touched){
-    <small class="text-red-500">Password is invalid. Please check for mistakes</small>
-    }
-
-    <button
-      type="submit"
-      [disabled]="userFormGroup.invalid"
-      class="text-white text-white font-bold py-4 px-8 rounded-full bg-indigo-800 mt-10"
-      >Login</button
-    >
   </form>
 </body>

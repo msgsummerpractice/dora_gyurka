@@ -53,7 +53,6 @@ public class AuthServiceImpl implements AuthService {
     public String verifyOtp(String username, String otp) {
        UserDetails user = userDetailService.loadUserByUsername(username);
         Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-        
         Token token = tokenRepository.findByUsernameAndUsedFalse(username)
                 .orElseThrow(() -> new RuntimeException("No valid OTP found for user"));
 

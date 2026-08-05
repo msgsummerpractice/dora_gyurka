@@ -8,4 +8,5 @@ import com.example.spring_jpa.model.Token;
 public interface TokenRepository extends JpaRepository<Token, Long> {
 
     Optional<Token> findByUsernameAndUsedFalse(String username);
+
 }
