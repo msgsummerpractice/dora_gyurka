@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -26,7 +27,8 @@ type UserForm = {
 export class LoginForm {
   private readonly form = inject(NonNullableFormBuilder);
   private readonly authService = inject(AuthService);
-  showOtp = false;
+  private readonly router = inject(Router);
+  showOtp = signal(false);
 
   protected readonly userFormGroup = this.form.group<UserForm>({
     username: this.form.control('', Validators.required),
@@ -54,6 +56,7 @@ export class LoginForm {
       next: (response) => {
         this.authService.setToken(response.accessToken);
         console.log('OTP verification successful. Token:', response.accessToken);
+        this.router.navigate(['/home']);
       },
       error: (error) => {
         console.error('OTP verification failed:', error);
@@ -69,7 +72,7 @@ export class LoginForm {
     console.log('Form submitted with username:', username, 'and password:', password);
     this.authService.login(username, password).subscribe({
       next: (response) => {
-        this.showOtp = true;
+        this.showOtp.set(true);
         console.log('Login successful. Proceed to OTP verification.');
         this.authService.setUsername(username);
         console.log('Login successful. Proceed to OTP verification.');

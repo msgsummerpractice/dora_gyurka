@@ -22,10 +22,10 @@ import java.util.List;
 import com.example.spring_jpa.filter.JwtAuthenticationFilter;
 import com.example.spring_jpa.providers.JWTAuthenticationEntryPoint;
 
-
 import org.springframework.context.annotation.Bean;
 
-@EnableMultiFactorAuthentication(authorities = {FactorGrantedAuthority.PASSWORD_AUTHORITY, FactorGrantedAuthority.OTT_AUTHORITY})
+@EnableMultiFactorAuthentication(authorities = { FactorGrantedAuthority.PASSWORD_AUTHORITY,
+        FactorGrantedAuthority.OTT_AUTHORITY })
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -40,7 +40,8 @@ public class Config {
 
     private final JwtAuthenticationFilter authenticationFilter;
 
-    public Config(UserDetailsService userDetailsService, JWTAuthenticationEntryPoint authenticationEntryPoint, JwtAuthenticationFilter authenticationFilter) {
+    public Config(UserDetailsService userDetailsService, JWTAuthenticationEntryPoint authenticationEntryPoint,
+            JwtAuthenticationFilter authenticationFilter) {
         this.userDetailsService = userDetailsService;
         this.authenticationEntryPoint = authenticationEntryPoint;
         this.authenticationFilter = authenticationFilter;
@@ -55,34 +56,35 @@ public class Config {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // http
         // .csrf(csrf -> csrf.disable())
-        //         .cors(cors -> cors.disable())
-        //         .authorizeHttpRequests(req -> req
-        //                 .requestMatchers(HttpMethod.DELETE, "/api/users/delete/{id}").hasRole("ADMIN")
-        //                 .anyRequest().authenticated()
-        //         )
-        //         .formLogin((form) -> form
-        //                 .loginPage("/login.html")
-        //                 .loginProcessingUrl("/api/users/login")
-        //                 .defaultSuccessUrl("/api/users")
-        //                 .permitAll()
-        //         ).httpBasic(Customizer.withDefaults());
+        // .cors(cors -> cors.disable())
+        // .authorizeHttpRequests(req -> req
+        // .requestMatchers(HttpMethod.DELETE,
+        // "/api/users/delete/{id}").hasRole("ADMIN")
+        // .anyRequest().authenticated()
+        // )
+        // .formLogin((form) -> form
+        // .loginPage("/login.html")
+        // .loginProcessingUrl("/api/users/login")
+        // .defaultSuccessUrl("/api/users")
+        // .permitAll()
+        // ).httpBasic(Customizer.withDefaults());
         // return http.build();
 
         http.csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .sessionManagement(session -> 
-                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((auth) -> {
-                        auth.requestMatchers("/api/auth/**").permitAll();
-                        auth.anyRequest().authenticated();
+                    auth.requestMatchers("/api/auth/**").permitAll();
+                    auth.anyRequest().authenticated();
                 });
         http.exceptionHandling(ex -> ex
-                        .authenticationEntryPoint(authenticationEntryPoint));
+                .authenticationEntryPoint(authenticationEntryPoint));
 
-        http.addFilterBefore(authenticationFilter, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authenticationFilter,
+                org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
+
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
@@ -90,18 +92,18 @@ public class Config {
         return authProvider;
     }
 
-    @Bean 
+    @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
 
-    @Bean 
+    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.addAllowedOrigin("http://localhost:4200");
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowCredentials(false);
-        configuration.setAllowedHeaders(List.of("Authorization","Content-Type"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
 
         org.springframework.web.cors.UrlBasedCorsConfigurationSource source = new org.springframework.web.cors.UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

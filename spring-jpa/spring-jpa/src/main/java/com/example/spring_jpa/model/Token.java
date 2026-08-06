@@ -1,4 +1,5 @@
 package com.example.spring_jpa.model;
+
 import java.time.LocalDateTime;
 import lombok.Data;
 import jakarta.persistence.Table;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "tokens")
 public class Token {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,6 +38,5 @@ public class Token {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
 
 }

@@ -13,6 +13,9 @@ import com.example.spring_jpa.dto.SignInRequest;
 import com.example.spring_jpa.dto.SignInResponse;
 import com.example.spring_jpa.service.AuthService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -31,10 +34,7 @@ public class AuthController {
 
     @PostMapping("/verify-otp")
     public ResponseEntity<SignInResponse> verifyOtp(@RequestBody OtpResponse otpResponse) {
-        System.out.println("Username: " + otpResponse.getUsername());
-    System.out.println("OTP: " + otpResponse.getOtp()); 
         String jwtToken = authService.verifyOtp(otpResponse.getUsername(), otpResponse.getOtp());
-         System.out.println("JWT result: " + jwtToken);
         if (jwtToken != null) {
             SignInResponse response = new SignInResponse();
             response.setAccessToken(jwtToken);

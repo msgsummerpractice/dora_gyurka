@@ -10,10 +10,10 @@ export class AuthService {
   private readonly authenticated = signal(true);
   private readonly api = 'http://localhost:8080/api/auth';
   private readonly http = inject(HttpClient);
-  private username: string | null = null;
-  private password: string | null = null;
-  private showOtp = false;
-  private token: string | null = null;
+  private username = signal<string | null>(null);
+  private password = signal<string | null>(null);
+  private showOtp = signal(false);
+  private token = signal<string | null>(null);
 
   login(username: string, password: string) {
     return this.http.post(`${this.api}/login`, { username, password });
@@ -31,18 +31,18 @@ export class AuthService {
   }
 
   setUsername(username: string): void {
-    this.username = username;
+    this.username.set(username);
     localStorage.setItem('username', username);
   }
 
   setPassword(password: string): void {
-    this.password = password;
+    this.password.set(password);
   }
 
   setToken(token: string): void {
-    this.token = token;
+    this.token.set(token);
   }
   getToken(): string | null {
-    return this.token;
+    return this.token();
   }
 }

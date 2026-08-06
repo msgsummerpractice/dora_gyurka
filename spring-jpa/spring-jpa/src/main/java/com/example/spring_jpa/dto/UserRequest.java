@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.Email;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,7 +17,7 @@ public class UserRequest {
 
     @NotBlank(message = "Last name required")
     private String lastName;
-    
+
     @NotBlank(message = "Username required")
     private String username;
 
@@ -30,5 +29,5 @@ public class UserRequest {
     @NotBlank(message = "Password required")
     @Size(min = 8, message = "Password must be at least 8 characters long")
     private String password;
-    
+
 }
