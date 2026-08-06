@@ -37,6 +37,7 @@ public class AuthController {
         if (jwtToken != null) {
             SignInResponse response = new SignInResponse();
             response.setAccessToken(jwtToken);
+            log.info("Your token here:" + jwtToken);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
