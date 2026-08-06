@@ -50,8 +50,6 @@ export class LoginForm {
   verify(): void {
     const { username, otp } = this.userFormGroup.getRawValue();
 
-    console.log('Verifying OTP for username:', username, 'with OTP:', otp);
-
     this.authService.verifyOtp(username, otp).subscribe({
       next: (response) => {
         this.authService.setToken(response.accessToken);
@@ -69,13 +67,10 @@ export class LoginForm {
       return;
     }
     const { username, password } = this.userFormGroup.getRawValue();
-    console.log('Form submitted with username:', username, 'and password:', password);
     this.authService.login(username, password).subscribe({
       next: (response) => {
         this.showOtp.set(true);
-        console.log('Login successful. Proceed to OTP verification.');
         this.authService.setUsername(username);
-        console.log('Login successful. Proceed to OTP verification.');
       },
       error: (error) => {
         console.error('Login failed:', error);

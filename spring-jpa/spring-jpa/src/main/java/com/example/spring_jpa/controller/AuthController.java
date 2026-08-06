@@ -25,7 +25,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<SignInResponse> authenticateUser(@RequestBody SignInRequest signInRequest) {
-        System.out.println("LOGIN CONTROLLER CALLED");
         String token = authService.login(signInRequest);
         SignInResponse response = new SignInResponse();
         response.setAccessToken(token);
