@@ -53,7 +53,7 @@ export class LoginForm {
     this.authService.verifyOtp(username, otp).subscribe({
       next: (response) => {
         this.authService.setToken(response.accessToken);
-        console.log('OTP verification successful. Token:', response.accessToken);
+        console.info('OTP verification successful. Token:', response.accessToken);
         this.router.navigate(['/home']);
       },
       error: (error) => {
