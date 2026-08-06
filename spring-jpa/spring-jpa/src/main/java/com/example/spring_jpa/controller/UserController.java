@@ -40,13 +40,13 @@ public class UserController {
 
     @Operation(summary = "Get all users", description = "Retrieve a list of all users")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Successfully retrieved list of users"),
-        @ApiResponse(responseCode = "204", description = "No users found")
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved list of users"),
+            @ApiResponse(responseCode = "204", description = "No users found")
     })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<UserResponse>> getAllUsers() {
-        //Pageable pageable = PageRequest.of(0, 2);
-        List<User> users = userService.findAllUsers(/*pagebale */);
+        // Pageable pageable = PageRequest.of(0, 2);
+        List<User> users = userService.findAllUsers(/* pagebale */);
 
         if (users.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -66,11 +66,11 @@ public class UserController {
 
     @Operation(summary = "Create user", description = "Create a new user")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "201", description = "Successfully created user"),
-        @ApiResponse(responseCode = "400", description = "Invalid request body")
+            @ApiResponse(responseCode = "201", description = "Successfully created user"),
+            @ApiResponse(responseCode = "400", description = "Invalid request body")
     })
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest ) {
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest) {
         UserResponse user1 = userMapper.toResponse(userService.createUser(userMapper.toEntity(userRequest)));
         if (user1 != null) {
             return ResponseEntity.status(HttpStatus.CREATED).body(user1);
@@ -82,12 +82,13 @@ public class UserController {
 
     @Operation(summary = "Get a user", description = "Retrieve a user by ID")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Successfully retrieved user"),
-        @ApiResponse(responseCode = "404", description = "User not found")
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved user"),
+            @ApiResponse(responseCode = "404", description = "User not found")
     })
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
-        User user = userService.getUserById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+        User user = userService.getUserById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
         UserResponse response = userMapper.toResponse(user);
         return ResponseEntity.status(HttpStatus.OK).body(response);
 
@@ -95,8 +96,8 @@ public class UserController {
 
     @Operation(summary = "Update user", description = "Update an existing user by ID")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Successfully updated user"),
-        @ApiResponse(responseCode = "404", description = "User not found")
+            @ApiResponse(responseCode = "200", description = "Successfully updated user"),
+            @ApiResponse(responseCode = "404", description = "User not found")
     })
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResponse> updateUser(@PathVariable Long id, @Valid @RequestBody UserRequest user) {
@@ -113,8 +114,8 @@ public class UserController {
 
     @Operation(summary = "Delete user", description = "Delete an existing user by ID")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "204", description = "Successfully deleted user"),
-        @ApiResponse(responseCode = "404", description = "User not found")
+            @ApiResponse(responseCode = "204", description = "Successfully deleted user"),
+            @ApiResponse(responseCode = "404", description = "User not found")
     })
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
@@ -130,25 +131,23 @@ public class UserController {
 
     @Operation(summary = "Partially update user", description = "Partially update an existing user by ID")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Successfully updated user"),
-        @ApiResponse(responseCode = "404", description = "User not found")
+            @ApiResponse(responseCode = "200", description = "Successfully updated user"),
+            @ApiResponse(responseCode = "404", description = "User not found")
     })
     @PatchMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserResponse> partialUpdateUser(@PathVariable Long id, @Valid @RequestBody UpdateUserRequest user) {
-        Optional<UserResponse> user1 = Optional.ofNullable(userMapper.toResponse(userService.getUserById(id).orElse(null)));
+    public ResponseEntity<UserResponse> partialUpdateUser(@PathVariable Long id,
+            @Valid @RequestBody UpdateUserRequest user) {
+        Optional<UserResponse> user1 = Optional
+                .ofNullable(userMapper.toResponse(userService.getUserById(id).orElse(null)));
         if (!user1.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        else {
-            if(user.getUsername() != null){
+        } else {
+            if (user.getUsername() != null) {
                 user1.get().setUsername(user.getUsername());
-                System.out.println("username: " + user1.get().getUsername());
-                System.out.println("user entity: " + userMapper.toEntity(user1.get()));
                 userService.updateUser(userMapper.toEntity(user1.get()));
             }
             return ResponseEntity.status(HttpStatus.OK).body(user1.get());
         }
-       
 
     }
 }

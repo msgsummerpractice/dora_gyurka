@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'home',
-  imports: [MatToolbarModule, MatIconModule,MatButtonModule,DogGalleryComponent,VisibilityDirective,RouterLink],
+  imports: [MatToolbarModule, MatIconModule, MatButtonModule, DogGalleryComponent, VisibilityDirective, RouterLink],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
 })

@@ -13,6 +13,9 @@ import com.example.spring_jpa.dto.SignInRequest;
 import com.example.spring_jpa.dto.SignInResponse;
 import com.example.spring_jpa.service.AuthService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -22,7 +25,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<SignInResponse> authenticateUser(@RequestBody SignInRequest signInRequest) {
-        
         String token = authService.login(signInRequest);
         SignInResponse response = new SignInResponse();
         response.setAccessToken(token);
@@ -35,6 +37,7 @@ public class AuthController {
         if (jwtToken != null) {
             SignInResponse response = new SignInResponse();
             response.setAccessToken(jwtToken);
+            log.info("Your token here:" + jwtToken);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);

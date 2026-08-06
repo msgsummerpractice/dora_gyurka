@@ -50,26 +50,39 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String verifyOtp(String username, String otp) {
-       UserDetails user = userDetailService.loadUserByUsername(username);
-        Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-        
-        Token token = tokenRepository.findByUsernameAndUsedFalse(username)
-                .orElseThrow(() -> new RuntimeException("No valid OTP found for user"));
+public String verifyOtp(String username, String otp) {
+    Token token = tokenRepository.findTopByUsernameAndUsedFalseOrderByIdDesc(username)
+            .orElseThrow(() -> new RuntimeException("No OTP found for user: " + username));
 
-        if (token.getExpiresAt().isBefore(java.time.LocalDateTime.now())) {
-            throw new RuntimeException("OTP has expired");
-        }
-
-        if (token.getToken().equals(otp)) {
-            token.setUsed(true);
-            tokenRepository.save(token);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            String jwtToken = jwtTokenProvider.generateToken(authentication);
-            return jwtToken;
-        } else {
-            throw new RuntimeException("Invalid OTP");
-        }
-        
+    if (token == null) {
+        System.out.println("No OTP found");
+        return null;
     }
+
+    if (token.getExpiresAt().isBefore(java.time.LocalDateTime.now())) {
+        System.out.println("OTP expired");
+        return null;
+    }
+
+    if (!token.getToken().equals(otp)) {
+        System.out.println("OTP mismatch");
+        return null;
+    }
+
+    token.setUsed(true);
+    tokenRepository.save(token);
+
+    UserDetails user = userDetailService.loadUserByUsername(username);
+
+    Authentication authentication =
+            new UsernamePasswordAuthenticationToken(
+                    user,
+                    null,
+                    user.getAuthorities()
+            );
+
+    SecurityContextHolder.getContext().setAuthentication(authentication);
+
+    return jwtTokenProvider.generateToken(authentication);
+}
 }

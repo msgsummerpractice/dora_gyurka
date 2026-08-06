@@ -18,17 +18,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JWTokenProvider {
-    
+
     @Value("${spring.jwt.secret}")
     private String jwtSecret;
-    private long jwtExpirationDate = 3600000; //1h = 3600s and 3600*1000 = 3600000 milliseconds
+    private long jwtExpirationDate = 3600000;
 
     public String generateToken(Authentication authentication) {
         String username = authentication.getName();
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpirationDate);
 
-        String token =  Jwts.builder()
+        String token = Jwts.builder()
                 .subject(username)
                 .issuedAt(new Date())
                 .expiration(expiryDate)
@@ -38,9 +38,9 @@ public class JWTokenProvider {
         return token;
     }
 
-     public String generateSecretKey() {
+    public String generateSecretKey() {
         // length means (32 bytes are required for 256-bit key)
-        int length = 32; 
+        int length = 32;
 
         // Create a secure random generator
         SecureRandom secureRandom = new SecureRandom();
@@ -53,7 +53,7 @@ public class JWTokenProvider {
 
         // Encode the key in Base64 format for easier storage and usage
         return Base64.getUrlEncoder().withoutPadding().encodeToString(keyBytes);
-    }  
+    }
 
     private Key key() {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
@@ -61,22 +61,22 @@ public class JWTokenProvider {
 
     public String getUsernameFromToken(String token) {
         return Jwts.parser()
-                .verifyWith((SecretKey)key())
+                .verifyWith((SecretKey) key())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload()
                 .getSubject();
     }
 
-     public boolean validateToken(String token){
-        
-        try{
+    public boolean validateToken(String token) {
+
+        try {
             Jwts.parser()
-                .verifyWith((SecretKey) key())
-                .build()
-                .parse(token);
-             return true;
-        } catch(Exception e){
+                    .verifyWith((SecretKey) key())
+                    .build()
+                    .parse(token);
+            return true;
+        } catch (Exception e) {
             throw new JwtException("Invalid JWT token: " + e.getMessage());
         }
 

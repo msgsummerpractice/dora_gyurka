@@ -16,16 +16,17 @@
     (ngSubmit)="onSubmitForm()"
     class="align-content-center flex flex-col items-center"
   >
-    <label for="email" class="mb-1 mt-5 text-lg font-bold text-indigo-800">Email:</label>
+    @if(!showOtp()){
+    <label for="username" class="mb-1 mt-5 text-lg font-bold text-indigo-800">username:</label>
     <input
-      id="email"
-      formControlName="email"
+      id="username"
+      formControlName="username"
       type="text"
       class="px-10 rounded-4xl m-2 w-100 h-10"
     />
 
-    @if (userFormGroup.controls.email.invalid && userFormGroup.controls.email.touched){
-    <small class="text-red-500">Email is invalid. Please check for mistakes</small>
+    @if (userFormGroup.controls.username.invalid && userFormGroup.controls.username.touched){
+    <small class="text-red-500">username is invalid. Please check for mistakes</small>
     }
 
     <label for="password" class="mb-1 mt-5 text-lg font-bold text-indigo-800">Password:</label>
@@ -39,12 +40,27 @@
     @if (userFormGroup.controls.password.invalid && userFormGroup.controls.password.touched){
     <small class="text-red-500">Password is invalid. Please check for mistakes</small>
     }
-
     <button
       type="submit"
       [disabled]="userFormGroup.invalid"
       class="text-white text-white font-bold py-4 px-8 rounded-full bg-indigo-800 mt-10"
       >Login</button
     >
+    } @if(showOtp()){
+    <label for="otp" class="mb-1 mt-5 text-lg font-bold text-indigo-800">OTP:</label>
+    <input
+      id="otp"
+      formControlName="otp"
+      type="text"
+      class="px-10 rounded-4xl m-2 w-100 h-10"
+      placeholder="Enter OTP"
+    />
+    <button
+      type="button"
+      (click)="verify()"
+      class="text-white text-white font-bold py-4 px-8 rounded-full bg-indigo-800 mt-10"
+      >Verify OTP</button
+    >
+    }
   </form>
 </body>
