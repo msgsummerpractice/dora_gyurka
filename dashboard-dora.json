@@ -1,0 +1,1482 @@
+{
+  "properties": {
+    "lenses": [
+      {
+        "order": 0,
+        "parts": [
+          {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                },
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.Web/staticSites/cloudeday1"
+                          },
+                          "name": "CdnResponseSize",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.web/staticsites",
+                          "metricVisualization": {
+                            "displayName": "CdnResponseSize"
+                          }
+                        }
+                      ],
+                      "title": "data_out",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      },
+                      "timespan": {
+                        "relative": {
+                          "duration": 86400000
+                        },
+                        "showUTCTime": false,
+                        "grain": 1
+                      }
+                    }
+                  },
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.Web/staticSites/cloudeday1"
+                          },
+                          "name": "BytesSent",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.web/staticsites",
+                          "metricVisualization": {
+                            "displayName": "Data Out"
+                          }
+                        }
+                      ],
+                      "title": "data_out",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 6,
+              "y": 0,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                },
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.Web/staticSites/cloudeday1"
+                          },
+                          "name": "CdnRequestCount",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.web/staticsites",
+                          "metricVisualization": {
+                            "displayName": "CdnRequestCount"
+                          }
+                        }
+                      ],
+                      "title": "data_in",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      },
+                      "timespan": {
+                        "relative": {
+                          "duration": 86400000
+                        },
+                        "showUTCTime": false,
+                        "grain": 1
+                      }
+                    }
+                  },
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [],
+                      "title": "data_in",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 0,
+              "y": 6,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                },
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.Web/staticSites/cloudeday1"
+                          },
+                          "name": "CdnPercentageOf5XX",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.web/staticsites",
+                          "metricVisualization": {
+                            "displayName": "CdnPercentageOf5XX"
+                          }
+                        }
+                      ],
+                      "title": "errors",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      },
+                      "timespan": {
+                        "relative": {
+                          "duration": 86400000
+                        },
+                        "showUTCTime": false,
+                        "grain": 1
+                      }
+                    }
+                  },
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.Web/staticSites/cloudeday1"
+                          },
+                          "name": "CdnPercentageOf5XX",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.web/staticsites",
+                          "metricVisualization": {
+                            "displayName": "CdnPercentageOf5XX"
+                          }
+                        }
+                      ],
+                      "title": "errors",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              },
+              "filters": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "local",
+                    "granularity": "auto",
+                    "relative": "1440m"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 6,
+              "y": 6,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                },
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.Web/staticSites/cloudeday1"
+                          },
+                          "name": "CdnTotalLatency",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.web/staticsites",
+                          "metricVisualization": {
+                            "displayName": "CdnTotalLatency"
+                          }
+                        }
+                      ],
+                      "title": "latency",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      },
+                      "timespan": {
+                        "relative": {
+                          "duration": 86400000
+                        },
+                        "showUTCTime": false,
+                        "grain": 1
+                      }
+                    }
+                  },
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.Web/staticSites/cloudeday1"
+                          },
+                          "name": "CdnTotalLatency",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.web/staticsites",
+                          "metricVisualization": {
+                            "displayName": "CdnTotalLatency"
+                          }
+                        }
+                      ],
+                      "title": "latency",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 0,
+              "y": 11,
+              "colSpan": 12,
+              "rowSpan": 1
+            },
+            "metadata": {
+              "inputs": [],
+              "type": "Extension/HubsExtension/PartType/MarkdownPart",
+              "settings": {
+                "content": {
+                  "content": "",
+                  "title": "Backend",
+                  "subtitle": "",
+                  "markdownSource": 1,
+                  "markdownUri": ""
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 0,
+              "y": 12,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                },
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/dorabackend"
+                          },
+                          "name": "UsageNanoCores",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "CPU Usage"
+                          }
+                        }
+                      ],
+                      "title": "Avg CPU Usage for dorabackend",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      },
+                      "timespan": {
+                        "relative": {
+                          "duration": 86400000
+                        },
+                        "showUTCTime": false,
+                        "grain": 1
+                      }
+                    }
+                  },
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/dorabackend"
+                          },
+                          "name": "UsageNanoCores",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "CPU Usage"
+                          }
+                        }
+                      ],
+                      "title": "Avg CPU Usage for dorabackend",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              },
+              "filters": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "local",
+                    "granularity": "auto",
+                    "relative": "1440m"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 6,
+              "y": 12,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                },
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/dorabackend"
+                          },
+                          "name": "MemoryPercentage",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Memory Percentage (Preview)"
+                          }
+                        }
+                      ],
+                      "title": "Avg Memory Percentage (Preview) for dorabackend",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      },
+                      "timespan": {
+                        "relative": {
+                          "duration": 86400000
+                        },
+                        "showUTCTime": false,
+                        "grain": 1
+                      }
+                    }
+                  },
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/dorabackend"
+                          },
+                          "name": "MemoryPercentage",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Memory Percentage (Preview)"
+                          }
+                        }
+                      ],
+                      "title": "Avg Memory Percentage (Preview) for dorabackend",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              },
+              "filters": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "local",
+                    "granularity": "auto",
+                    "relative": "1440m"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 0,
+              "y": 18,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                },
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/dorabackend"
+                          },
+                          "name": "RxBytes",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Network In Bytes"
+                          }
+                        }
+                      ],
+                      "title": "Sum Network In Bytes for dorabackend",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      },
+                      "timespan": {
+                        "relative": {
+                          "duration": 86400000
+                        },
+                        "showUTCTime": false,
+                        "grain": 1
+                      }
+                    }
+                  },
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/dorabackend"
+                          },
+                          "name": "RxBytes",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Network In Bytes"
+                          }
+                        }
+                      ],
+                      "title": "Sum Network In Bytes for dorabackend",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              },
+              "filters": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "local",
+                    "granularity": "auto",
+                    "relative": "1440m"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 6,
+              "y": 18,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                },
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/dorabackend"
+                          },
+                          "name": "TxBytes",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Network Out Bytes"
+                          }
+                        }
+                      ],
+                      "title": "Sum Network Out Bytes for dorabackend",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      },
+                      "timespan": {
+                        "relative": {
+                          "duration": 86400000
+                        },
+                        "showUTCTime": false,
+                        "grain": 1
+                      }
+                    }
+                  },
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/dorabackend"
+                          },
+                          "name": "TxBytes",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Network Out Bytes"
+                          }
+                        }
+                      ],
+                      "title": "Sum Network Out Bytes for dorabackend",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              },
+              "filters": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "local",
+                    "granularity": "auto",
+                    "relative": "1440m"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 0,
+              "y": 23,
+              "colSpan": 12,
+              "rowSpan": 1
+            },
+            "metadata": {
+              "inputs": [],
+              "type": "Extension/HubsExtension/PartType/MarkdownPart",
+              "settings": {
+                "content": {
+                  "content": "",
+                  "title": "Database",
+                  "subtitle": "",
+                  "markdownSource": 1,
+                  "markdownUri": ""
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 0,
+              "y": 24,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                },
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/db-dora"
+                          },
+                          "name": "UsageNanoCores",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "CPU Usage"
+                          }
+                        }
+                      ],
+                      "title": "Avg CPU Usage for db-dora",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      },
+                      "timespan": {
+                        "relative": {
+                          "duration": 86400000
+                        },
+                        "showUTCTime": false,
+                        "grain": 1
+                      }
+                    }
+                  },
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/db-dora"
+                          },
+                          "name": "UsageNanoCores",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "CPU Usage"
+                          }
+                        }
+                      ],
+                      "title": "Avg CPU Usage for db-dora",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              },
+              "filters": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "local",
+                    "granularity": "auto",
+                    "relative": "1440m"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 6,
+              "y": 24,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                },
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/db-dora"
+                          },
+                          "name": "MemoryPercentage",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Memory Percentage (Preview)"
+                          }
+                        }
+                      ],
+                      "title": "Avg Memory Percentage (Preview) for db-dora",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      },
+                      "timespan": {
+                        "relative": {
+                          "duration": 86400000
+                        },
+                        "showUTCTime": false,
+                        "grain": 1
+                      }
+                    }
+                  },
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/db-dora"
+                          },
+                          "name": "MemoryPercentage",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Memory Percentage (Preview)"
+                          }
+                        }
+                      ],
+                      "title": "Avg Memory Percentage (Preview) for db-dora",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              },
+              "filters": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "local",
+                    "granularity": "auto",
+                    "relative": "1440m"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 0,
+              "y": 30,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                },
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/db-dora"
+                          },
+                          "name": "RxBytes",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Network In Bytes"
+                          }
+                        }
+                      ],
+                      "title": "Sum Network In Bytes for db-dora",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      },
+                      "timespan": {
+                        "relative": {
+                          "duration": 86400000
+                        },
+                        "showUTCTime": false,
+                        "grain": 1
+                      }
+                    }
+                  },
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/db-dora"
+                          },
+                          "name": "RxBytes",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Network In Bytes"
+                          }
+                        }
+                      ],
+                      "title": "Sum Network In Bytes for db-dora",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              },
+              "filters": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "local",
+                    "granularity": "auto",
+                    "relative": "1440m"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 6,
+              "y": 30,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                },
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/db-dora"
+                          },
+                          "name": "TxBytes",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Network Out Bytes"
+                          }
+                        }
+                      ],
+                      "title": "Sum Network Out Bytes for db-dora",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        }
+                      },
+                      "timespan": {
+                        "relative": {
+                          "duration": 86400000
+                        },
+                        "showUTCTime": false,
+                        "grain": 1
+                      }
+                    }
+                  },
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/bff82f66-027a-4464-a242-3e971760bb2e/resourceGroups/Gyurka_Dora/providers/Microsoft.App/containerApps/db-dora"
+                          },
+                          "name": "TxBytes",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.app/containerapps",
+                          "metricVisualization": {
+                            "displayName": "Network Out Bytes"
+                          }
+                        }
+                      ],
+                      "title": "Sum Network Out Bytes for db-dora",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              },
+              "filters": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "local",
+                    "granularity": "auto",
+                    "relative": "1440m"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "model": {
+        "timeRange": {
+          "value": {
+            "relative": {
+              "duration": 24,
+              "timeUnit": 1
+            }
+          },
+          "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+        },
+        "filterLocale": {
+          "value": "en-us"
+        },
+        "filters": {
+          "value": {
+            "MsPortalFx_TimeRange": {
+              "model": {
+                "format": "utc",
+                "granularity": "auto",
+                "relative": "24h"
+              },
+              "displayCache": {
+                "name": "UTC Time",
+                "value": "Past 24 hours"
+              },
+              "filteredPartIds": [
+                "StartboardPart-MonitorChartPart-f8943d58-ba8a-4ef0-ac37-f2d254d272c1",
+                "StartboardPart-MonitorChartPart-f8943d58-ba8a-4ef0-ac37-f2d254d272ea",
+                "StartboardPart-MonitorChartPart-f8943d58-ba8a-4ef0-ac37-f2d254d2731e",
+                "StartboardPart-MonitorChartPart-f8943d58-ba8a-4ef0-ac37-f2d254d2735e",
+                "StartboardPart-MonitorChartPart-f8943d58-ba8a-4ef0-ac37-f2d254d274de",
+                "StartboardPart-MonitorChartPart-f8943d58-ba8a-4ef0-ac37-f2d254d27537",
+                "StartboardPart-MonitorChartPart-f8943d58-ba8a-4ef0-ac37-f2d254d2759b",
+                "StartboardPart-MonitorChartPart-f8943d58-ba8a-4ef0-ac37-f2d254d2760b",
+                "StartboardPart-MonitorChartPart-f8943d58-ba8a-4ef0-ac37-f2d254d27743",
+                "StartboardPart-MonitorChartPart-f8943d58-ba8a-4ef0-ac37-f2d254d27799",
+                "StartboardPart-MonitorChartPart-f8943d58-ba8a-4ef0-ac37-f2d254d277ee",
+                "StartboardPart-MonitorChartPart-f8943d58-ba8a-4ef0-ac37-f2d254d27856"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "name": "dashboard-dora",
+  "type": "Microsoft.Portal/dashboards",
+  "location": "INSERT LOCATION",
+  "tags": {
+    "hidden-title": "dashboard-dora"
+  },
+  "apiVersion": "2022-12-01-preview"
+}
