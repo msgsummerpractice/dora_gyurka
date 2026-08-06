@@ -23,11 +23,16 @@
                 "glob": "**/*",
                 "input": "public"
               }
+              ,
+              "src/assets", "src/staticwebapp.config.json"
             ],
             "styles": ["src/material-theme.scss", "src/styles.css"]
           },
           "configurations": {
             "production": {
+              "optimization": {
+                "fonts": false
+              },
               "budgets": [
                 {
                   "type": "initial",
