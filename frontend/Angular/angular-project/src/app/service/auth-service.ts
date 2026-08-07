@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private readonly authenticated = signal(true);
-  private readonly api = 'http://localhost:8080/api/auth';
+  private readonly api = 'https://dorabackend.salmonflower-bd9abe31.westeurope.azurecontainerapps.io/api/auth';
   private readonly http = inject(HttpClient);
   private username = signal<string | null>(null);
   private password = signal<string | null>(null);
