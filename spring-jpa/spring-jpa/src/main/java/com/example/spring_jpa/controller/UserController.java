@@ -24,6 +24,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "https://thankful-bush-057c86c03.7.azurestaticapps.net")
 @RestController
 @RequestMapping(path = "/api/users")
 @Validated
