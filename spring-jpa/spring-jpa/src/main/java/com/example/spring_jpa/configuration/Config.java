@@ -100,7 +100,7 @@ public class Config {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("http://localhost:4200");
+        configuration.addAllowedOrigin("https://thankful-bush-057c86c03.7.azurestaticapps.net");
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowCredentials(false);
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));

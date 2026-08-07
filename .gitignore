@@ -6,3 +6,7 @@ parent
 target/
 **/node_modules/
 **/.angular/
+spring-core/
+spring-boot/
+**/node_modules/
+**/.angular/
